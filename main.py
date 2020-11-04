@@ -1,47 +1,32 @@
-# This page will have all the heroes dictionaries
+import hero
+import time
+import numpy as np
+import string
+
+team1 = {"heroM": hero.adan_hero["name"], "heroS1": hero.alma_hero["name"], "heroS2": hero.franky_hero["name"],
+         "heroS3": hero.luis_hero["name"]}
+
+team2 = {"heroM": hero.gil_hero["name"], "heroS1": hero.lalo_hero["name"], "heroS2": hero.sherman_hero["name"],
+         "heroS3": hero.chino_hero["name"]}
+team1_name = "ScRuS"
+team2_name = "TLC"
+
+print(team1)
+print(f"""
+
+{team1_name.center(25,"-")}                            {team2_name.center(25,"-")}
+S3. {team2["heroS3"].ljust(20)}                             S3. {team1["heroS3"].ljust(20)}  
+S2. {team2["heroS2"].ljust(20)}             VS              S2. {team1["heroS2"].ljust(20)} 
+S1. {str(team2["heroS1"]).ljust(20)}                             S1. {team1["heroS1"].ljust(20)} 
+####################                                 ####################
+SM {team2["heroM"].ljust(20)}                               SM {team1["heroM"].center(20)} 
+""")
+#print(hero.adan_hero["position"]["main"])
 
 
-adan_hero = {
-  "health points": 120,
-  "defense": 20,
-  "m_defense": 20,
-  "strength": 25,
-  "intellect": 10,
-  "speed": 5,
-  "position": {"main": "front", "support": "rear"},
-  "element": "fire",
-  "state": {"normal": True, "poisoning": False, "stunt": False, "burning": False, "confused": False},
-  "base_experience": 100,
-  "height": 3,
-  "held_items": {},
-  "id": 1,
-  "moves": [
-    {
-      "kinto_attack": {
-        "name": "Mega Punch",
-        "damage": 12,
-        "cost": 2,
-        "cool-down": 1,
-        "cause": "PA"
-      },
-      "chase_attack": {
-        "name": "Slash 1",
-        "damage": 5,
-        "chase": "PA",
-        "cause": "KD"
-      },
-      "support": {
-        "name": "heal 1",
-        "power": 14,
-      },
-      "passive": {
-        "name": "40/40",
-        "power": 35
-      }
-    }],
-  "name": "Adan Cruz",
-  "weight": 90
-  }
+def battle():
+
+    pass
 
 
 
