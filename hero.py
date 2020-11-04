@@ -51,12 +51,12 @@ franky_hero = {
   "intellect": 10,
   "speed": 5,
   "position": {"main": "front", "support": "rear"},
-  "element": "fire",
+  "element": "wind",
   "state": {"normal": True, "poisoning": False, "stunt": False, "burning": False, "confused": False},
   "base_experience": 100,
   "height": 3,
   "held_items": {},
-  "id": 1,
+  "id": 2,
   "moves": [
     {
       "kinto_attack": {
@@ -93,12 +93,12 @@ alma_hero = {
   "intellect": 10,
   "speed": 5,
   "position": {"main": "front", "support": "rear"},
-  "element": "fire",
+  "element": "water",
   "state": {"normal": True, "poisoning": False, "stunt": False, "burning": False, "confused": False},
   "base_experience": 100,
   "height": 3,
   "held_items": {},
-  "id": 1,
+  "id": 3,
   "moves": [
     {
       "kinto_attack": {
@@ -134,26 +134,27 @@ luis_hero = {
   "intellect": 10,
   "speed": 5,
   "position": {"main": "front", "support": "rear"},
-  "element": "fire",
+  "element": "earth",
   "state": {"normal": True, "poisoning": False, "stunt": False, "burning": False, "confused": False},
   "base_experience": 100,
   "height": 3,
   "held_items": {},
-  "id": 1,
-  "moves": [
-    {
+  "id": 4,
+  "moves": {
       "kinto_attack": {
         "name": "Mega Punch",
         "damage": 12,
         "cost": 2,
         "cool-down": 1,
-        "cause": "PA"
+        "cause": "PA",
+        "type": "atk"
       },
       "chase_attack": {
-        "name": "Slash 1",
+        "name": "Beam 1",
         "damage": 5,
         "chase": "PA",
-        "cause": "KD"
+        "cause": "KD",
+        "type": "matk"
       },
       "support": {
         "name": "heal 1",
@@ -163,7 +164,7 @@ luis_hero = {
         "name": "40/40",
         "power": 35
       }
-    }],
+    },
   "name": "Luis Cruz",
   "weight": 90
   }
@@ -176,12 +177,12 @@ gil_hero = {
   "intellect": 10,
   "speed": 5,
   "position": {"main": "front", "support": "rear"},
-  "element": "fire",
+  "element": "lighting",
   "state": {"normal": True, "poisoning": False, "stunt": False, "burning": False, "confused": False},
   "base_experience": 100,
   "height": 3,
   "held_items": {},
-  "id": 1,
+  "id": 5,
   "moves": [
     {
       "kinto_attack": {
@@ -222,7 +223,7 @@ lalo_hero = {
   "base_experience": 100,
   "height": 3,
   "held_items": {},
-  "id": 1,
+  "id": 6,
   "moves": [
     {
       "kinto_attack": {
@@ -258,12 +259,12 @@ sherman_hero = {
   "intellect": 10,
   "speed": 5,
   "position": {"main": "front", "support": "rear"},
-  "element": "fire",
+  "element": "earth",
   "state": {"normal": True, "poisoning": False, "stunt": False, "burning": False, "confused": False},
   "base_experience": 100,
   "height": 3,
   "held_items": {},
-  "id": 1,
+  "id": 7,
   "moves": [
     {
       "kinto_attack": {
@@ -293,39 +294,41 @@ sherman_hero = {
   }
 chino_hero = {
   "health points": 120,
-  "defense": 20,
+  "defense": 30,
   "m_defense": 20,
   "strength": 25,
   "intellect": 10,
   "speed": 5,
   "position": {"main": "front", "support": "rear"},
-  "element": "fire",
+  "element": "wind",
   "state": {"normal": True, "poisoning": False, "stunt": False, "burning": False, "confused": False},
   "base_experience": 100,
   "height": 3,
   "held_items": {},
-  "id": 1,
+  "id": 8,
   "moves": [
     {
       "kinto_attack": {
-        "name": "Mega Punch",
+        "name": "Mega Kick",
         "damage": 12,
         "cost": 2,
         "cool-down": 1,
-        "cause": "PA"
+        "cause": "PA",
+        "type": "atk"
       },
       "chase_attack": {
-        "name": "Slash 1",
+        "name": "Dash 1",
         "damage": 5,
         "chase": "PA",
-        "cause": "KD"
+        "cause": "KD",
+        "type": "atk/matk"
       },
       "support": {
-        "name": "heal 1",
-        "power": 14,
+        "name": "shield 1",
+        "power": 24,
       },
       "passive": {
-        "name": "40/40",
+        "name": "cheetah",
         "power": 35
       }
     }],
