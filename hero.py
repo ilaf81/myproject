@@ -1,5 +1,54 @@
 # This page will have all the heroes dictionaries
 
+class Hero():
+  def __init__(self):
+    self.stats = {"health points": 120,
+                  "defense": 20,
+                  "m_defense": 20,
+                  "strength": 25,
+                  "intellect": 10,
+                  "speed": 5}
+      
+    self.battle_field = {"position": {"main": False, "support1": False, "support2": True, "support3": True}}
+    self.element = "fire"
+    self.state = {"normal": True, "poisoning": False, "stunt": False, "burning": False, "confused": False},
+    self.level = 1
+    self.xp = 0
+    self.held_items = {}
+    self.name = ""
+    self.move = {}
+
+class Adan(Hero):
+  def __init__(self):
+    Hero.__init__(self)
+    self.name = "Adan Cruz"
+    self.move = {
+          "kinto_attack": {
+                          "name": "Mega Punch",
+                          "damage": 12,
+                          "cost": 2,
+                          "cool-down": 1,
+                          "cause": "PA"
+                          },
+        "chase_attack": {
+                          "name": "Slash 1",
+                          "damage": 5,
+                          "chase": "PA",
+                          "cause": "KD"
+                          },
+        "support": {
+                    "name": "heal 1",
+                    "power": 14,
+                    },
+        "passive": {
+                    "name": "40/40",
+                    "critical hit": 35
+                    }
+        }
+
+
+        
+
 
 adan_hero = {
   "health points": 120,
@@ -8,7 +57,7 @@ adan_hero = {
   "strength": 25,
   "intellect": 10,
   "speed": 5,
-  "position": {"main": "front", "support": "rear"},
+  "position": {"main": False, "support1": False, "support2": True, "support3": True},
   "element": "fire",
   "state": {"normal": True, "poisoning": False, "stunt": False, "burning": False, "confused": False},
   "base_experience": 100,

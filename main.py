@@ -1,12 +1,14 @@
 import hero
 import time
+import random
+
 import numpy as np
 import string
 
 # defining Team 1
-t1hero1 = hero.luis_hero
-
-team1 = {"heroM": hero.adan_hero["name"], "heroS1": hero.alma_hero["name"], "heroS2": hero.franky_hero["name"],
+t1hero1 = hero.Adan()
+print(t1hero1)
+team1 = {"heroM": t1hero1.name, "heroS1": hero.alma_hero["name"], "heroS2": hero.franky_hero["name"],
          "heroS3": hero.luis_hero["name"]}
 
 #defining Enemy Team
@@ -34,13 +36,13 @@ def team_display():
 
 def combat_stats(hero_s, hero_s2):
     #hero 1 stats
-    name1 = hero_s["name"]
-    hp1 = str(hero_s["health points"])
-    def1 = str(hero_s["defense"])
-    str1 = str(hero_s["strength"])
-    int1 = str(hero_s["intellect"])
-    spd1 = str(hero_s["speed"])
-    ele1 = hero_s["element"]
+    name1 = hero_s.name
+    hp1 = str(hero_s.stats["health points"])
+    def1 = str(hero_s.stats["defense"])
+    str1 = str(hero_s.stats["strength"])
+    int1 = str(hero_s.stats["intellect"])
+    spd1 = str(hero_s.stats["speed"])
+    ele1 = hero_s.element
     #hero 2 stats
     name2 = hero_s2["name"]
     hp2 = str(hero_s2["health points"])
@@ -62,10 +64,10 @@ def combat_stats(hero_s, hero_s2):
 
 def fight(hero1, hero2):
 
-    h1atk = hero1["strength"]
+    h1atk = hero1.stats["strength"]
     h2def = hero2["defense"]
-    m_atk = hero1["moves"]["kinto_attack"]["damage"]
-    damage = int(m_atk) + (int(h1atk) * 4 - int(h2def) * 2)
+    m_atk = hero1.move["kinto_attack"]["damage"]
+    damage = int(m_atk) + (int(h1atk) * 3 - int(h2def) * 2)
     h2hp = hero2["health points"]
     h2hp = int(h2hp) - damage
     #hero2["health points"] = int(damage)
