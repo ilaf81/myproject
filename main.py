@@ -7,12 +7,17 @@ import string
 
 # defining Team 1
 t1hero1 = hero.Adan()
+t1hero2 = hero.Alma()
+t1hero3 = hero.Franky()
+t1hero4 = hero.Luis()
+
+
 print(t1hero1)
-team1 = {"heroM": t1hero1.name, "heroS1": hero.alma_hero["name"], "heroS2": hero.franky_hero["name"],
-         "heroS3": hero.luis_hero["name"]}
+team1 = {"heroM": t1hero1.name, "heroS1": t1hero2.get_name(), "heroS2": t1hero3.get_name(),
+         "heroS3": t1hero4.get_name()}
 
 #defining Enemy Team
-t2hero1 = hero.chino_hero
+t2hero1 = hero.Chino()
 
 team2 = {"heroM": hero.gil_hero["name"], "heroS1": hero.lalo_hero["name"], "heroS2": hero.sherman_hero["name"],
          "heroS3": hero.chino_hero["name"]}
@@ -27,11 +32,11 @@ def team_display():
     print(f"""
 
     {team1_name.center(25,"-")}                            {team2_name.center(25,"-")}
-    S3. {team2["heroS3"].ljust(20)}                             S3. {team1["heroS3"].ljust(20)}  
-    S2. {team2["heroS2"].ljust(20)}             VS              S2. {team1["heroS2"].ljust(20)} 
-    S1. {str(team2["heroS1"]).ljust(20)}                             S1. {team1["heroS1"].ljust(20)} 
+    S3. {team1["heroS3"].ljust(20)}                             S3. {team2["heroS3"].ljust(20)}  
+    S2. {team1["heroS2"].ljust(20)}             VS              S2. {team2["heroS2"].ljust(20)} 
+    S1. {str(team1["heroS1"]).ljust(20)}                             S1. {team2["heroS1"].ljust(20)} 
     ####################                                 ####################
-    SM {team2["heroM"].ljust(20)}                               SM {team1["heroM"].center(20)} 
+    SM {team1["heroM"].ljust(20)}                               SM {team2["heroM"].center(20)} 
     """)
 
 def combat_stats(hero_s, hero_s2):
@@ -44,13 +49,13 @@ def combat_stats(hero_s, hero_s2):
     spd1 = str(hero_s.stats["speed"])
     ele1 = hero_s.element
     #hero 2 stats
-    name2 = hero_s2["name"]
-    hp2 = str(hero_s2["health points"])
-    def2 = str(hero_s2["defense"])
-    str2 = str(hero_s2["strength"])
-    int2 = str(hero_s2["intellect"])
-    spd2 = str(hero_s2["speed"])
-    ele2 = hero_s2["element"]
+    name2 = hero_s2.name
+    hp2 = str(hero_s2.stats["health points"])
+    def2 = str(hero_s2.stats["defense"])
+    str2 = str(hero_s2.stats["strength"])
+    int2 = str(hero_s2.stats["intellect"])
+    spd2 = str(hero_s2.stats["speed"])
+    ele2 = hero_s2.element
     print(f"""
     {name1.ljust(15)}                     {name2.ljust(15)}
     HP: {hp1.ljust(15)}                   HP: {hp2.ljust(15)}
@@ -65,10 +70,10 @@ def combat_stats(hero_s, hero_s2):
 def fight(hero1, hero2):
 
     h1atk = hero1.stats["strength"]
-    h2def = hero2["defense"]
+    h2def = hero2.stats["defense"]
     m_atk = hero1.move["kinto_attack"]["damage"]
     damage = int(m_atk) + (int(h1atk) * 3 - int(h2def) * 2)
-    h2hp = hero2["health points"]
+    h2hp = hero2.stats["health points"]
     h2hp = int(h2hp) - damage
     #hero2["health points"] = int(damage)
     return h2hp
@@ -81,7 +86,7 @@ def battle():
     team_display()
     combat_stats(t1hero1, t2hero1)
     d_hp = fight(t1hero1, t2hero1)
-    t2hero1["health points"] = d_hp
+    t2hero1.stats["health points"] = d_hp
     time.sleep(3)
     print("Round 2")
     team_display()

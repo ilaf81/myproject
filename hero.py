@@ -1,5 +1,6 @@
 # This page will have all the heroes dictionaries
 
+# Hero class with all standard attributes
 class Hero():
   def __init__(self):
     self.stats = {"health points": 120,
@@ -10,7 +11,7 @@ class Hero():
                   "speed": 5}
       
     self.battle_field = {"position": {"main": False, "support1": False, "support2": True, "support3": True}}
-    self.element = "fire"
+    self.element = ""
     self.state = {"normal": True, "poisoning": False, "stunt": False, "burning": False, "confused": False},
     self.level = 1
     self.xp = 0
@@ -18,10 +19,14 @@ class Hero():
     self.name = ""
     self.move = {}
 
+  def get_name(self):
+    return self.name
+
 class Adan(Hero):
   def __init__(self):
     Hero.__init__(self)
     self.name = "Adan Cruz"
+    self.element = "Fire"
     self.move = {
           "kinto_attack": {
                           "name": "Mega Punch",
@@ -46,177 +51,125 @@ class Adan(Hero):
                     }
         }
 
+class Franky(Hero):
+  def __init__(self):
+    Hero.__init__(self)
+    self.name = "Franky Cruz"
+    self.element = "Wind"
+    self.move = {
+          "kinto_attack": {
+                          "name": "Mega Kick",
+                          "damage": 12,
+                          "cost": 2,
+                          "cool-down": 1,
+                          "cause": "PA"
+                          },
+        "chase_attack": {
+                          "name": "Scream 1",
+                          "damage": 5,
+                          "chase": "PA",
+                          "cause": "KD"
+                          },
+        "support": {
+                    "name": "chaos 1",
+                    "power": 14,
+                    "cause": "stunt"
+                    },
+        "passive": {
+                    "name": "sprinting",
+                    "speed": 35
+                    }
+        }
 
-        
+class Alma(Hero):
+  def __init__(self):
+    Hero.__init__(self)
+    self.name = "Alma Cruz"
+    self.element = "Water"
+    self.move = {
+          "kinto_attack": {
+                          "name": "Water Fall",
+                          "damage": 12,
+                          "cost": 2,
+                          "cool-down": 1,
+                          "cause": "poisoning"
+                          },
+        "chase_attack": {
+                          "name": "Kick 1",
+                          "damage": 5,
+                          "chase": "poisoning",
+                          "cause": "KD"
+                          },
+        "support": {
+                    "name": "Mist 1",
+                    "power": 14,
+                    "cause": "normal"
+                    },
+        "passive": {
+                    "name": "Medical knowledge",
+                    "heals %": 1.2
+                    }
+        }
 
+class Luis(Hero):
+  def __init__(self):
+    Hero.__init__(self)
+    self.name = "Luis Cruz"
+    self.element = "Earth"
+    self.move = {
+          "kinto_attack": {
+                          "name": "Earthquake",
+                          "damage": 15,
+                          "cost": 3,
+                          "cool-down": 2,
+                          "cause": "KD"
+                          },
+        "chase_attack": {
+                          "name": "Hyper punch 1",
+                          "damage": 8,
+                          "chase": "KD",
+                          "cause": "KD"
+                          },
+        "support": {
+                    "name": "Mud armor",
+                    "defense shield": 10,
+                    "cause": "Immunity"
+                    },
+        "passive": {
+                    "name": "Earth Master",
+                    "str/int 35%": 1.35
+                    }
+        }
+class Chino(Hero):
+  def __init__(self):
+    Hero.__init__(self)
+    self.name = "Jaime Leyva"
+    self.element = "Wind"
+    self.move = {
+          "kinto_attack": {
+                          "name": "Earthquake",
+                          "damage": 15,
+                          "cost": 3,
+                          "cool-down": 2,
+                          "cause": "KD"
+                          },
+        "chase_attack": {
+                          "name": "Hyper punch 1",
+                          "damage": 8,
+                          "chase": "KD",
+                          "cause": "KD"
+                          },
+        "support": {
+                    "name": "Mud armor",
+                    "defense shield": 10,
+                    "cause": "Immunity"
+                    },
+        "passive": {
+                    "name": "Earth Master",
+                    "str/int 35%": 1.35
+                    }
+        }
 
-adan_hero = {
-  "health points": 120,
-  "defense": 20,
-  "m_defense": 20,
-  "strength": 25,
-  "intellect": 10,
-  "speed": 5,
-  "position": {"main": False, "support1": False, "support2": True, "support3": True},
-  "element": "fire",
-  "state": {"normal": True, "poisoning": False, "stunt": False, "burning": False, "confused": False},
-  "base_experience": 100,
-  "height": 3,
-  "held_items": {},
-  "id": 1,
-  "moves": [
-    {
-      "kinto_attack": {
-        "name": "Mega Punch",
-        "damage": 12,
-        "cost": 2,
-        "cool-down": 1,
-        "cause": "PA"
-      },
-      "chase_attack": {
-        "name": "Slash 1",
-        "damage": 5,
-        "chase": "PA",
-        "cause": "KD"
-      },
-      "support": {
-        "name": "heal 1",
-        "power": 14,
-      },
-      "passive": {
-        "name": "40/40",
-        "power": 35
-      }
-    }],
-  "name": "Adan Cruz",
-  "weight": 90
-  }
-
-franky_hero = {
-  "health points": 120,
-  "defense": 20,
-  "m_defense": 20,
-  "strength": 25,
-  "intellect": 10,
-  "speed": 5,
-  "position": {"main": "front", "support": "rear"},
-  "element": "wind",
-  "state": {"normal": True, "poisoning": False, "stunt": False, "burning": False, "confused": False},
-  "base_experience": 100,
-  "height": 3,
-  "held_items": {},
-  "id": 2,
-  "moves": [
-    {
-      "kinto_attack": {
-        "name": "Mega Punch",
-        "damage": 12,
-        "cost": 2,
-        "cool-down": 1,
-        "cause": "PA"
-      },
-      "chase_attack": {
-        "name": "Slash 1",
-        "damage": 5,
-        "chase": "PA",
-        "cause": "KD"
-      },
-      "support": {
-        "name": "heal 1",
-        "power": 14,
-      },
-      "passive": {
-        "name": "40/40",
-        "power": 35
-      }
-    }],
-  "name": "Franky Cruz",
-  "weight": 90
-  }
-
-alma_hero = {
-  "health points": 120,
-  "defense": 20,
-  "m_defense": 20,
-  "strength": 25,
-  "intellect": 10,
-  "speed": 5,
-  "position": {"main": "front", "support": "rear"},
-  "element": "water",
-  "state": {"normal": True, "poisoning": False, "stunt": False, "burning": False, "confused": False},
-  "base_experience": 100,
-  "height": 3,
-  "held_items": {},
-  "id": 3,
-  "moves": [
-    {
-      "kinto_attack": {
-        "name": "Mega Punch",
-        "damage": 12,
-        "cost": 2,
-        "cool-down": 1,
-        "cause": "PA"
-      },
-      "chase_attack": {
-        "name": "Slash 1",
-        "damage": 5,
-        "chase": "PA",
-        "cause": "KD"
-      },
-      "support": {
-        "name": "heal 1",
-        "power": 14,
-      },
-      "passive": {
-        "name": "40/40",
-        "power": 35
-      }
-    }],
-  "name": "Alma Lupercio",
-  "weight": 90
-  }
-luis_hero = {
-  "health points": 120,
-  "defense": 20,
-  "m_defense": 20,
-  "strength": 25,
-  "intellect": 10,
-  "speed": 5,
-  "position": {"main": "front", "support": "rear"},
-  "element": "earth",
-  "state": {"normal": True, "poisoning": False, "stunt": False, "burning": False, "confused": False},
-  "base_experience": 100,
-  "height": 3,
-  "held_items": {},
-  "id": 4,
-  "moves": {
-      "kinto_attack": {
-        "name": "Mega Punch",
-        "damage": 12,
-        "cost": 2,
-        "cool-down": 1,
-        "cause": "PA",
-        "type": "atk"
-      },
-      "chase_attack": {
-        "name": "Beam 1",
-        "damage": 5,
-        "chase": "PA",
-        "cause": "KD",
-        "type": "matk"
-      },
-      "support": {
-        "name": "heal 1",
-        "power": 14,
-      },
-      "passive": {
-        "name": "40/40",
-        "power": 35
-      }
-    },
-  "name": "Luis Cruz",
-  "weight": 90
-  }
 
 gil_hero = {
   "health points": 120,
