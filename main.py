@@ -18,9 +18,12 @@ team1 = {"heroM": t1hero1.name, "heroS1": t1hero2.get_name(), "heroS2": t1hero3.
 
 #defining Enemy Team
 t2hero1 = hero.Chino()
+t2hero2 = hero.Gil()
+t2hero3 = hero.Lalo()
+t2hero4 = hero.Sherman()
 
-team2 = {"heroM": hero.gil_hero["name"], "heroS1": hero.lalo_hero["name"], "heroS2": hero.sherman_hero["name"],
-         "heroS3": hero.chino_hero["name"]}
+team2 = {"heroM": t2hero2.get_name(), "heroS1": t2hero3.get_name(), "heroS2": t2hero4.get_name(),
+         "heroS3": t2hero1.get_name()}
 
 team1_name = "ScRuS"
 team2_name = "Fire Level 1"
@@ -84,13 +87,13 @@ def fight(hero1, hero2):
 def battle():
     print("Round 1")
     team_display()
-    combat_stats(t1hero1, t2hero1)
-    d_hp = fight(t1hero1, t2hero1)
-    t2hero1.stats["health points"] = d_hp
+    combat_stats(t1hero1, t2hero2)
+    d_hp = fight(t1hero1, t2hero2)
+    t2hero2.stats["health points"] = d_hp
     time.sleep(3)
     print("Round 2")
     team_display()
-    combat_stats(t1hero1, t2hero1)
+    combat_stats(t1hero1, t2hero2)
     time.sleep(3)
     print("Round 3")
 

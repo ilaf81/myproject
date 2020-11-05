@@ -1,6 +1,7 @@
 # This page will have all the heroes dictionaries
 
 # Hero class with all standard attributes
+
 class Hero():
   def __init__(self):
     self.stats = {"health points": 120,
@@ -170,170 +171,94 @@ class Chino(Hero):
                     }
         }
 
+class Gil(Hero):
+  def __init__(self):
+    Hero.__init__(self)
+    self.name = "Gil Osuna"
+    self.element = "Water"
+    self.move = {
+          "kinto_attack": {
+                          "name": "Triple kick",
+                          "damage": 15,
+                          "cost": 3,
+                          "cool-down": 2,
+                          "cause": "PA"
+                          },
+        "chase_attack": {
+                          "name": "Upper Kick 1",
+                          "damage": 8,
+                          "chase": "PA",
+                          "cause": "KD"
+                          },
+        "support": {
+                    "name": "Ramen bowl",
+                    "recover mana": 2,
+                    "cause": "normal"
+                    },
+        "passive": {
+                    "name": "Earth Master",
+                    "str/int 35%": 1.35
+                    }
+        }
 
-gil_hero = {
-  "health points": 120,
-  "defense": 20,
-  "m_defense": 20,
-  "strength": 25,
-  "intellect": 10,
-  "speed": 5,
-  "position": {"main": "front", "support": "rear"},
-  "element": "lighting",
-  "state": {"normal": True, "poisoning": False, "stunt": False, "burning": False, "confused": False},
-  "base_experience": 100,
-  "height": 3,
-  "held_items": {},
-  "id": 5,
-  "moves": [
-    {
-      "kinto_attack": {
-        "name": "Mega Punch",
-        "damage": 12,
-        "cost": 2,
-        "cool-down": 1,
-        "cause": "PA"
-      },
-      "chase_attack": {
-        "name": "Slash 1",
-        "damage": 5,
-        "chase": "PA",
-        "cause": "KD"
-      },
-      "support": {
-        "name": "heal 1",
-        "power": 14,
-      },
-      "passive": {
-        "name": "40/40",
-        "power": 35
-      }
-    }],
-  "name": "Gil Osuna",
-  "weight": 90
-  }
-lalo_hero = {
-  "health points": 120,
-  "defense": 20,
-  "m_defense": 20,
-  "strength": 25,
-  "intellect": 10,
-  "speed": 5,
-  "position": {"main": "front", "support": "rear"},
-  "element": "fire",
-  "state": {"normal": True, "poisoning": False, "stunt": False, "burning": False, "confused": False},
-  "base_experience": 100,
-  "height": 3,
-  "held_items": {},
-  "id": 6,
-  "moves": [
-    {
-      "kinto_attack": {
-        "name": "Mega Punch",
-        "damage": 12,
-        "cost": 2,
-        "cool-down": 1,
-        "cause": "PA"
-      },
-      "chase_attack": {
-        "name": "Slash 1",
-        "damage": 5,
-        "chase": "PA",
-        "cause": "KD"
-      },
-      "support": {
-        "name": "heal 1",
-        "power": 14,
-      },
-      "passive": {
-        "name": "40/40",
-        "power": 35
-      }
-    }],
-  "name": "Eduardo Castro",
-  "weight": 90
-  }
-sherman_hero = {
-  "health points": 120,
-  "defense": 20,
-  "m_defense": 20,
-  "strength": 25,
-  "intellect": 10,
-  "speed": 5,
-  "position": {"main": "front", "support": "rear"},
-  "element": "earth",
-  "state": {"normal": True, "poisoning": False, "stunt": False, "burning": False, "confused": False},
-  "base_experience": 100,
-  "height": 3,
-  "held_items": {},
-  "id": 7,
-  "moves": [
-    {
-      "kinto_attack": {
-        "name": "Mega Punch",
-        "damage": 12,
-        "cost": 2,
-        "cool-down": 1,
-        "cause": "PA"
-      },
-      "chase_attack": {
-        "name": "Slash 1",
-        "damage": 5,
-        "chase": "PA",
-        "cause": "KD"
-      },
-      "support": {
-        "name": "heal 1",
-        "power": 14,
-      },
-      "passive": {
-        "name": "40/40",
-        "power": 35
-      }
-    }],
-  "name": "Carlos Duarte",
-  "weight": 90
-  }
-chino_hero = {
-  "health points": 120,
-  "defense": 30,
-  "m_defense": 20,
-  "strength": 25,
-  "intellect": 10,
-  "speed": 5,
-  "position": {"main": "front", "support": "rear"},
-  "element": "wind",
-  "state": {"normal": True, "poisoning": False, "stunt": False, "burning": False, "confused": False},
-  "base_experience": 100,
-  "height": 3,
-  "held_items": {},
-  "id": 8,
-  "moves": [
-    {
-      "kinto_attack": {
-        "name": "Mega Kick",
-        "damage": 12,
-        "cost": 2,
-        "cool-down": 1,
-        "cause": "PA",
-        "type": "atk"
-      },
-      "chase_attack": {
-        "name": "Dash 1",
-        "damage": 5,
-        "chase": "PA",
-        "cause": "KD",
-        "type": "atk/matk"
-      },
-      "support": {
-        "name": "shield 1",
-        "power": 24,
-      },
-      "passive": {
-        "name": "cheetah",
-        "power": 35
-      }
-    }],
-  "name": "Jaime Leyva",
-  "weight": 90
-  }
+class Lalo(Hero):
+  def __init__(self):
+    Hero.__init__(self)
+    self.name = "Eduardo Castro"
+    self.element = "Fire"
+    self.move = {
+          "kinto_attack": {
+                          "name": "Red Roses",
+                          "damage": 18,
+                          "cost": 2,
+                          "cool-down": 2,
+                          "cause": "PA"
+                          },
+        "chase_attack": {
+                          "name": "Sweet Talk 1",
+                          "damage": 5,
+                          "chase": "PA",
+                          "cause": "confused"
+                          },
+        "support": {
+                    "name": "King Gambit",
+                    "recover mana": 2,
+                    "cause": "normal"
+                    },
+        "passive": {
+                    "name": "Chess Master",
+                    "int 15%": 1.15
+                    }
+        }
+
+
+class Sherman(Hero):
+  def __init__(self):
+    Hero.__init__(self)
+    self.name = "Carlos Duarte"
+    self.element = "Earth"
+    self.move = {
+          "kinto_attack": {
+                          "name": "Hand Shake",
+                          "damage": 13,
+                          "cost": 1,
+                          "cool-down": 1,
+                          "cause": "burning"
+                          },
+        "chase_attack": {
+                          "name": "Look-down",
+                          "damage": 4,
+                          "chase": "burning",
+                          "cause": "KD"
+                          },
+        "support": {
+                    "name": "Mom's Food",
+                    "heal": 13,
+                    "cause": "normal"
+                    },
+        "passive": {
+                    "name": "Physics PhD",
+                    "Team 5% speed": 1.05
+                    }
+        }
+
