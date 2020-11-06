@@ -81,21 +81,25 @@ class Adan(Hero):
                           "damage": 12,
                           "cost": 2,
                           "cool-down": 1,
-                          "cause": "PA"
+                          "cause": "PA",
+                          "type": "str"
                           },
         "chase_attack": {
                           "name": "Slash 1",
                           "damage": 5,
                           "chase": "PA",
-                          "cause": "KD"
+                          "cause": "KD",
+                          "type": "str"
                           },
         "support": {
                     "name": "heal 1",
                     "power": 14,
+                    "type": "int"
                     },
         "passive": {
                     "name": "40/40",
-                    "critical hit": 35
+                    "critical hit": 35,
+                    "type": "boost"
                     }
         }
 
@@ -110,18 +114,21 @@ class Franky(Hero):
                           "damage": 12,
                           "cost": 2,
                           "cool-down": 1,
-                          "cause": "PA"
+                          "cause": "PA",
+                          "type": "str"
                           },
         "chase_attack": {
                           "name": "Scream 1",
                           "damage": 5,
                           "chase": "PA",
-                          "cause": "KD"
+                          "cause": "KD",
+                          "type": "int"
                           },
         "support": {
                     "name": "chaos 1",
                     "power": 14,
-                    "cause": "stunt"
+                    "cause": "stunt",
+                    "type": "int"
                     },
         "passive": {
                     "name": "sprinting",
