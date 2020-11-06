@@ -81,7 +81,7 @@ def battle():
     team_display()
     combat_stats(t1hero1, t2hero1)
     a_move = "kinto_attack"
-    d_hp = combat.fight(t1hero1, a_move, t1hero2, t1hero3, t1hero4, t2hero1, t2hero2, t2hero3, t2hero4)
+    d_hp = combat.fight_boss(t1hero1, a_move, t1hero2, t1hero3, t1hero4, t2hero1, t2hero2, t2hero3, t2hero4)
     t2hero1.set_health(d_hp)
     time.sleep(3)
     print("Round 2")
