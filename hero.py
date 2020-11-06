@@ -20,8 +20,55 @@ class Hero():
     self.name = ""
     self.move = {}
 
+  #function to get hero name
   def get_name(self):
     return self.name
+
+  #function to get hero speed
+  def get_speed(self):
+    return self.stats["speed"]
+
+  #function to get hero health
+  def get_health(self):
+    return self.stats["health points"]
+
+  #function to set health
+  def set_health(self, new_hp):
+    self.stats["health points"] = new_hp
+
+  #function to get defense
+  def get_defense(self):
+    return self.stats["defense"]
+
+  #function to update defense
+  def set_defense(self, new_def):
+    self.stats["defense"] = new_def
+
+  #function to get magic defense
+  def get_m_defense(self):
+    return self.stats["m_defense"]
+
+  #function to update magic defense
+  def set_m_defense(self, new_m_def):
+    self.stats["m_defense"] = new_m_def
+
+  #function to get intellect
+  def get_intellect(self):
+    return self.stats["intellect"]
+
+  #function to update intellect
+  def set_intellect(self, new_int):
+    self.stats["intellect"] = new_int
+
+  # function to get strength
+  def get_strength(self):
+    return self.stats["strength"]
+
+  # function to update strength
+  def set_strength(self, new_str):
+    self.stats["strength"] = new_str
+
+
 
 class Adan(Hero):
   def __init__(self):
@@ -96,9 +143,9 @@ class Alma(Hero):
                           "cause": "poisoning"
                           },
         "chase_attack": {
-                          "name": "Kick 1",
+                          "name": "Kick",
                           "damage": 5,
-                          "chase": "poisoning",
+                          "chase": "PA",
                           "cause": "KD"
                           },
         "support": {
