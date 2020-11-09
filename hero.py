@@ -4,14 +4,14 @@
 
 class Hero():
   def __init__(self):
-    self.stats = {"health points": 120,
+    self.stats = {"health points": 1200,
                   "defense": 20,
                   "m_defense": 20,
                   "strength": 25,
                   "intellect": 10,
                   "speed": 5}
       
-    self.battle_field = {"position": {"main": False, "support1": False, "support2": True, "support3": True}}
+    self.battle_field = {"position": {"main": False, "support1": False, "support2": False, "support3": False}}
     self.element = ""
     self.state = {"normal": True, "poisoning": False, "stunt": False, "burning": False, "confused": False},
     self.level = 1
@@ -19,6 +19,9 @@ class Hero():
     self.held_items = {}
     self.name = ""
     self.move = {}
+    self.attacked = False
+    self.alive = True
+
 
   #function to get hero name
   def get_name(self):
@@ -67,6 +70,11 @@ class Hero():
   # function to update strength
   def set_strength(self, new_str):
     self.stats["strength"] = new_str
+  # function to check if plater already attacked
+  def get_attacked(self):
+      return self.attacked
+  def set_attacked(self, is_attacked):
+      self.attacked = is_attacked
 
 
 
@@ -81,15 +89,16 @@ class Adan(Hero):
                           "damage": 12,
                           "cost": 2,
                           "cool-down": 1,
-                          "cause": "PA",
+                          "cause": "KD",
                           "type": "str"
                           },
         "chase_attack": {
                           "name": "Slash 1",
                           "damage": 5,
-                          "chase": "PA",
-                          "cause": "KD",
-                          "type": "str"
+                          "chase": "KD",
+                          "cause": "PA",
+                          "type": "str",
+                          "used": False
                           },
         "support": {
                     "name": "heal 1",
@@ -98,7 +107,7 @@ class Adan(Hero):
                     },
         "passive": {
                     "name": "40/40",
-                    "critical hit": 35,
+                    "action": 35,
                     "type": "boost"
                     }
         }
@@ -120,9 +129,10 @@ class Franky(Hero):
         "chase_attack": {
                           "name": "Scream 1",
                           "damage": 5,
-                          "chase": "PA",
+                          "chase": "CA",
                           "cause": "KD",
-                          "type": "int"
+                          "type": "int",
+                          "used": False
                           },
         "support": {
                     "name": "chaos 1",
@@ -132,7 +142,8 @@ class Franky(Hero):
                     },
         "passive": {
                     "name": "sprinting",
-                    "speed": 35
+                    "action": 35,
+                    "type": "boost"
                     }
         }
 
@@ -153,7 +164,8 @@ class Alma(Hero):
                           "name": "Kick",
                           "damage": 5,
                           "chase": "PA",
-                          "cause": "KD"
+                          "cause": "CA",
+                          "used": False
                           },
         "support": {
                     "name": "Mist 1",
@@ -162,7 +174,8 @@ class Alma(Hero):
                     },
         "passive": {
                     "name": "Medical knowledge",
-                    "heals %": 1.2
+                    "action": 1.2,
+                    "type": "boost"
                     }
         }
 
@@ -183,7 +196,8 @@ class Luis(Hero):
                           "name": "Hyper punch 1",
                           "damage": 8,
                           "chase": "KD",
-                          "cause": "KD"
+                          "cause": "KD",
+                          "used": False
                           },
         "support": {
                     "name": "Mud armor",
@@ -192,7 +206,8 @@ class Luis(Hero):
                     },
         "passive": {
                     "name": "Earth Master",
-                    "str/int 35%": 1.35
+                    "action": 1.35,
+                    "type": "boost"
                     }
         }
 class Chino(Hero):
@@ -206,22 +221,27 @@ class Chino(Hero):
                           "damage": 15,
                           "cost": 3,
                           "cool-down": 2,
-                          "cause": "KD"
+                          "cause": "KD",
+                          "type": "str"
                           },
         "chase_attack": {
                           "name": "Hyper punch 1",
                           "damage": 8,
                           "chase": "KD",
-                          "cause": "KD"
+                          "cause": "KD",
+                          "type": "str",
+                          "used": False
                           },
         "support": {
                     "name": "Mud armor",
-                    "defense shield": 10,
-                    "cause": "Immunity"
+                    "power": 10,
+                    "cause": "Immunity",
+                    "type": "str"
                     },
         "passive": {
                     "name": "Earth Master",
-                    "str/int 35%": 1.35
+                    "action": 1.35,
+                    "type": "boost"
                     }
         }
 
@@ -242,7 +262,8 @@ class Gil(Hero):
                           "name": "Upper Kick 1",
                           "damage": 8,
                           "chase": "PA",
-                          "cause": "KD"
+                          "cause": "KD",
+                          "used": False
                           },
         "support": {
                     "name": "Ramen bowl",
@@ -251,7 +272,8 @@ class Gil(Hero):
                     },
         "passive": {
                     "name": "Earth Master",
-                    "str/int 35%": 1.35
+                    "action": 1.35,
+                    "type": "boost"
                     }
         }
 
@@ -272,7 +294,8 @@ class Lalo(Hero):
                           "name": "Sweet Talk 1",
                           "damage": 5,
                           "chase": "PA",
-                          "cause": "confused"
+                          "cause": "confused",
+                          "used": False
                           },
         "support": {
                     "name": "King Gambit",
@@ -281,7 +304,8 @@ class Lalo(Hero):
                     },
         "passive": {
                     "name": "Chess Master",
-                    "int 15%": 1.15
+                    "action": 1.15,
+                    "type": "boost"
                     }
         }
 
@@ -303,7 +327,8 @@ class Sherman(Hero):
                           "name": "Look-down",
                           "damage": 4,
                           "chase": "burning",
-                          "cause": "KD"
+                          "cause": "KD",
+                          "used": False
                           },
         "support": {
                     "name": "Mom's Food",
@@ -312,7 +337,8 @@ class Sherman(Hero):
                     },
         "passive": {
                     "name": "Physics PhD",
-                    "Team 5% speed": 1.05
+                    "action": 1.05 ,
+                    "type": "boost"
                     }
         }
 
