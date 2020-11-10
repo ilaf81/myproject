@@ -36,7 +36,7 @@ team2 = {"heroM": t2hero1.get_name(), "heroS1": t2hero3.get_name(), "heroS2": t2
          "heroS3": t2hero2.get_name()}
 
 team1_name = "ScRuS"
-team2_name = "Fire Level 1"
+team2_name = "Fire Team 1"
 
 
 #function to display team information, hero position, and battling hero

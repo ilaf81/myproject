@@ -2,9 +2,102 @@
 import random
 import time
 
-# Main attack function
+# type damage function
+def type_damage( damage, type_dmg, str , int):
+    if type_dmg == "str":
+        t_damage = damage + (str * 3)
+    elif type_dmg == "int":
+        t_damage = damage + (int * 3)
+    else:
+        t_damage = damage + (((int/2) + (str/2)) * 3)
+    return t_damage
 
+def element_msg_bonus(h_element, e_element):
+    messege_element_bonus = ""
+    if h_element == e_element:
+        messege_element_bonus = "but it's not very effective"
 
+    elif h_element == "Fire" and e_element == "Wind":
+        messege_element_bonus = "and it's very effective"
+
+    elif h_element == "Fire" and e_element == "Water":
+        messege_element_bonus = "but it's very weak"
+
+    elif h_element == "Wind" and e_element == "Lighting":
+        messege_element_bonus = "and it's very effective"
+
+    elif h_element == "Wind" and e_element == "Fire":
+        messege_element_bonus = "but it's very weak"
+
+    elif h_element == "Lighting" and e_element == "Earth":
+        messege_element_bonus = "and it's very effective"
+
+    elif h_element == "Lighting" and e_element == "Wind":
+        messege_element_bonus = "but it's very weak"
+
+    elif h_element == "Earth" and e_element == "Water":
+        messege_element_bonus = "and it's very effective"
+
+    elif h_element == "Earth" and e_element == "Lighting":
+        messege_element_bonus = "but it's very weak"
+
+    elif h_element == "Water" and e_element == "Fire":
+        messege_element_bonus = "and it's very effective"
+
+    elif h_element == "Water" and e_element == "Earth":
+        messege_element_bonus = "but it's very weak"
+    else:
+        messege_element_bonus = ""
+
+    return messege_element_bonus
+
+# element bonus damage function
+def element_bonus( damage , h_element, e_element):
+    if h_element == e_element:
+
+        damage = damage * 0.90
+        time.sleep(1)
+    elif h_element == "Fire" and e_element == "Wind":
+
+        damage = damage * 1.35
+        time.sleep(1)
+    elif h_element == "Fire" and e_element == "Water":
+
+        damage = damage * 0.65
+        time.sleep(1)
+    elif h_element == "Wind" and e_element == "Lighting":
+
+        damage = damage * 1.35
+        time.sleep(1)
+    elif h_element == "Wind" and e_element == "Fire":
+
+        damage = damage * 0.65
+        time.sleep(1)
+    elif h_element == "Lighting" and e_element == "Earth":
+
+        damage = damage * 1.35
+        time.sleep(1)
+    elif h_element == "Lighting" and e_element == "Wind":
+
+        damage = damage * 0.65
+        time.sleep(1)
+    elif h_element == "Earth" and e_element == "Water":
+
+        damage = damage * 1.35
+        time.sleep(1)
+    elif h_element == "Earth" and e_element == "Lighting":
+
+        damage = damage * 0.65
+        time.sleep(1)
+    elif h_element == "Water" and e_element == "Fire":
+
+        damage = damage * 1.35
+        time.sleep(1)
+    elif h_element == "Water" and e_element == "Earth":
+
+        damage = damage * 0.65
+        time.sleep(1)
+    return damage
 
 
 # standard attack function
@@ -15,15 +108,25 @@ def standard_attack(hero1, hero2, hero3, hero4, e_boss, teams_name):
     for team_member in hero_list:
         tm_main_name = team_member.get_name()
         tm_main_str = team_member.get_strength()
+        tm_main_int = team_member.get_strength()
+        tm_main_element = team_member.get_element()
+
         tm_main_StdAtk_name = team_member.move["standard_attack"]["name"]
         tm_main_StdAtk_damge = team_member.move["standard_attack"]["power"]
         tm_main_StdAtk_cause = team_member.move["standard_attack"]["cause"]
+        tm_main_StdAtk_type = team_member.move["standard_attack"]["type"]
 
+        pwr_damage = type_damage(tm_main_StdAtk_damge, tm_main_StdAtk_type, tm_main_str, tm_main_int )
         enemy_health = enemy_main.get_health()
+        enemy_element = enemy_main.get_element()
         current_cause = tm_main_StdAtk_cause
         h1def = enemy_main.get_defense()
-        damage = tm_main_StdAtk_damge + (tm_main_str * 3) - int(h1def) * 3
-        print(f"{tm_main_name} uses {tm_main_StdAtk_name}. {damage} damage causing {current_cause}")
+        damage = tm_main_StdAtk_damge + pwr_damage - int(h1def) * 3
+        damage = element_bonus(damage, tm_main_element, enemy_element)
+        damage = round(damage, 2)
+        msg_element = element_msg_bonus(tm_main_element, enemy_element)
+        print(f"{tm_main_name} uses {tm_main_StdAtk_name}")
+        print(f"causing {damage} {tm_main_element} damage and {current_cause} {msg_element}")
         enemy_health = enemy_health - damage
         time.sleep(2)
 
@@ -32,6 +135,7 @@ def standard_attack(hero1, hero2, hero3, hero4, e_boss, teams_name):
         while chase_active:
             if current_cause == hero1.move["chase_attack"]["chase"] and hero1.move["chase_attack"]["used"] is False:
                 chase_counter += 1
+                h_element = hero1.get_element()
                 # calling chase function to get chase damage
                 chase_dmg = chase_attack(hero1, enemy_main, current_cause)
 
@@ -45,6 +149,7 @@ def standard_attack(hero1, hero2, hero3, hero4, e_boss, teams_name):
 
             elif current_cause == hero2.move["chase_attack"]["chase"] and hero2.move["chase_attack"]["used"] is False:
                 chase_counter += 1
+                h_element = hero2.get_element()
                 cause_atk_name = hero2.move["chase_attack"]["name"]
                 # calling chase function to get chase damage
                 chase_dmg = chase_attack(hero2, enemy_main, current_cause)
@@ -59,6 +164,7 @@ def standard_attack(hero1, hero2, hero3, hero4, e_boss, teams_name):
 
             elif current_cause == hero3.move["chase_attack"]["chase"] and hero3.move["chase_attack"]["used"] is False:
                 chase_counter += 1
+
                 cause_atk_name = hero3.move["chase_attack"]["name"]
                 # calling chase function to get chase damage
                 chase_dmg = chase_attack(hero3, enemy_main, current_cause)
@@ -107,16 +213,20 @@ def reset_round_var(hero, hero2, hero3, hero4):
 def chase_attack(hero, e_hero, pre_cause):
     hero_name = hero.get_name()
     hero_str = hero.get_strength()
-
+    hero_element = hero.get_element()
     hero_int = hero.get_intellect()
     hero_ch_atk_dmg = hero.move["chase_attack"]["damage"]
     hero_ch_atk_name = hero.move["chase_attack"]["name"]
     hero_ch_atk_cause = hero.move["chase_attack"]["cause"]
     e_h_def = e_hero.get_defense()
+    enemy_element = e_hero.get_element
 
     chase_dmg = hero_ch_atk_dmg + (hero_str * 3) - (e_h_def * 3)
-    print(
-        f"{hero_name} follows {pre_cause} with {hero_ch_atk_name}. {chase_dmg} damage causing {hero_ch_atk_cause}")
+    chase_dmg = element_bonus(chase_dmg, hero_element, enemy_element)
+    msg_element = element_msg_bonus(hero_element, enemy_element)
+    print(f"{hero_name} chase the {pre_cause} with {hero_ch_atk_name}")
+    chase_dmg = round(chase_dmg, 2)
+    print(f"causing {chase_dmg} {hero_element} damage and {hero_ch_atk_cause} {msg_element}")
     return chase_dmg
 
 
@@ -128,15 +238,24 @@ def kinto_attack(hero1, hero2, hero3, hero4, e_boss, team_name):
     for team_member in hero_list:
         tm_main_name = team_member.get_name()
         tm_main_str = team_member.get_strength()
+        tm_main_int = team_member.get_strength()
+        tm_main_element = team_member.get_element()
+
         tm_main_KintodAtk_name = team_member.move["kinto_attack"]["name"]
         tm_main_KintoAtk_damge = team_member.move["kinto_attack"]["damage"]
         tm_main_KintoAtk_cause = team_member.move["kinto_attack"]["cause"]
-
+        tm_main_KintoAtk_type = team_member.move["kinto_attack"]["type"]
+        pwr_damage = type_damage(tm_main_KintoAtk_damge, tm_main_KintoAtk_type, tm_main_str, tm_main_int)
         enemy_health = enemy_main.get_health()
+        enemy_element = enemy_main.get_element()
+
         current_cause = tm_main_KintoAtk_cause
         h1def = enemy_main.get_defense()
-        damage = tm_main_KintoAtk_damge + (tm_main_str * 3) - int(h1def) * 3
-        print(f"{tm_main_name} uses {tm_main_KintodAtk_name}. {damage} damage causing {current_cause}")
+        damage = tm_main_KintoAtk_damge + pwr_damage - int(h1def) * 3
+        damage = element_bonus(damage, tm_main_element, enemy_element)
+        msg_element = element_msg_bonus(tm_main_element, enemy_element)
+        print(f"{tm_main_name} uses {tm_main_KintodAtk_name}")
+        print(f"causing {damage} {tm_main_element} damage and {current_cause} {msg_element} ")
         enemy_health = enemy_health - damage
         time.sleep(2)
         current_cause = tm_main_KintoAtk_cause
@@ -202,10 +321,10 @@ def kinto_attack(hero1, hero2, hero3, hero4, e_boss, team_name):
 
         enemy_main.set_health(enemy_health)
 
-
-
+    enemy_health = round(enemy_health, 2)
     print(f"{enemy_main.get_name()} now has {enemy_health} hit points!")
     print("Kinto Attack End")
+
     return enemy_health
 
 def fight_hero(t2h1, a_move, t2h2, t2h3, t2h4, t1h1):

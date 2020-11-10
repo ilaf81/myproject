@@ -4,7 +4,7 @@
 
 class Hero():
   def __init__(self):
-    self.stats = {"health points": 1200,
+    self.stats = {"health points": 1200.0,
                   "defense": 20,
                   "m_defense": 20,
                   "strength": 25,
@@ -73,9 +73,12 @@ class Hero():
   # function to check if plater already attacked
   def get_attacked(self):
       return self.attacked
+
   def set_attacked(self, is_attacked):
       self.attacked = is_attacked
 
+  def get_element(self):
+    return self.element
 
 
 class Adan(Hero):
@@ -93,7 +96,7 @@ class Adan(Hero):
                           "type": "str"
                           },
         "chase_attack": {
-                          "name": "Slash 1",
+                          "name": "Slash",
                           "damage": 5,
                           "chase": "knockdown",
                           "cause": "repulsed",
@@ -101,7 +104,7 @@ class Adan(Hero):
                           "used": False
                           },
         "standard_attack": {
-                    "name": "heal 1",
+                    "name": "Heal",
                     "power": 14,
                     "cause": "normal",
                     "type": "int"
@@ -128,7 +131,7 @@ class Franky(Hero):
                           "type": "str"
                           },
         "chase_attack": {
-                          "name": "Scream 1",
+                          "name": "Scream",
                           "damage": 5,
                           "chase": "confused",
                           "cause": "knockdown",
@@ -136,7 +139,7 @@ class Franky(Hero):
                           "used": False
                           },
         "standard_attack": {
-                    "name": "chaos 1",
+                    "name": "Chaos",
                     "power": 14,
                     "cause": "stunt",
                     "type": "int"
@@ -159,19 +162,22 @@ class Alma(Hero):
                           "damage": 24,
                           "cost": 2,
                           "cool-down": 1,
-                          "cause": "poisoning"
+                          "cause": "poisoning",
+                          "type": "int"
                           },
         "chase_attack": {
                           "name": "Kick",
                           "damage": 5,
                           "chase": "repulsed",
                           "cause": "confused",
-                          "used": False
+                          "used": False,
+                          "type": "int"
                           },
         "standard_attack": {
-                    "name": "Mist 1",
+                    "name": "Mist",
                     "power": 14,
-                    "cause": "normal"
+                    "cause": "normal",
+                    "type": "int"
                     },
         "passive": {
                     "name": "Medical knowledge",
@@ -191,22 +197,25 @@ class Luis(Hero):
                           "damage": 30,
                           "cost": 3,
                           "cool-down": 2,
-                          "cause": "knockdown"
+                          "cause": "knockdown",
+                          "type": "str"
                           },
         "chase_attack": {
-                          "name": "Hyper punch 1",
+                          "name": "Hyper punch",
                           "damage": 8,
                           "chase": "knockdown",
                           "cause": "knockdown",
+                          "type": "str",
                           "used": False
                           },
         "standard_attack": {
                     "name": "Mud armor",
                     "power": 10,
-                    "cause": "Immunity"
+                    "cause": "Immunity",
+                    "type": "int"
                     },
         "passive": {
-                    "name": "Earth Master",
+                    "name": "Earth master",
                     "action": 1.35,
                     "type": "boost"
                     }
@@ -270,7 +279,8 @@ class Gil(Hero):
         "standard_attack": {
                             "name": "Taijutsu Attack",
                             "power": 5,
-                            "cause": "high float"
+                            "cause": "high float",
+                            "type": "str"
                     },
         "passive": {
                     "name": "Gate of Joy",
@@ -327,18 +337,21 @@ class Sherman(Hero):
                           "damage": 26,
                           "cost": 1,
                           "cool-down": 1,
-                          "cause": "burning"
+                          "cause": "burning",
+                          "type": "str"
                           },
         "chase_attack": {
                           "name": "Look-down",
                           "damage": 4,
                           "chase": "burning",
-                          "cause": "KD",
+                          "cause": "knockdown",
+                          "type": "int",
                           "used": False
                           },
         "standard_attack": {
                     "name": "Mom's Food",
                     "power": 13,
+                    "type": "int",
                     "cause": "normal"
                     },
         "passive": {
