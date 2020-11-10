@@ -13,10 +13,12 @@ t1hero3 = hero.Franky()
 t1hero4 = hero.Luis()
 
 team1_hero_list = [t1hero1, t1hero2, t1hero3, t1hero4]
+team1_speed = t1hero1.get_speed() + t1hero2.get_speed() + t1hero3.get_speed() + t1hero4.get_speed()
 
-print(t1hero1)
-team1 = {"heroM": team1_hero_list[0].name, "heroS1": t1hero2.get_name(), "heroS2": t1hero3.get_name(),
-         "heroS3": t1hero4.get_name()}
+
+print(f"team 1 speed is {team1_speed}")
+team1 = {"heroM": team1_hero_list[0].name, "heroS1": team1_hero_list[1].name, "heroS2": team1_hero_list[2].name,
+         "heroS3": team1_hero_list[3].name}
 
 #defining Enemy Team
 t2hero1 = hero.Chino()
@@ -24,7 +26,11 @@ t2hero2 = hero.Gil()
 t2hero3 = hero.Lalo()
 t2hero4 = hero.Sherman()
 
+team2_hero_list = [t2hero1, t2hero2, t2hero3, t2hero4]
+team2_speed = t2hero1.get_speed() + t2hero2.get_speed() + t2hero3.get_speed() + t2hero4.get_speed()
+print(f"team 2 speed is {team2_speed}")
 
+team2_speed = t2hero1.get_speed() + t2hero2.get_speed() + t2hero3.get_speed() + t2hero4.get_speed()
 
 team2 = {"heroM": t2hero1.get_name(), "heroS1": t2hero3.get_name(), "heroS2": t2hero4.get_name(),
          "heroS3": t2hero2.get_name()}
@@ -86,17 +92,41 @@ def battle():
     print(f"{t1hero1.get_name()} and {t2hero1.get_name()} step in for battle")
     time.sleep(2)
     combat_stats(t1hero1, t2hero1)
-    a_move = "kinto_attack"
-    d_hp = combat.fight_boss(t1hero1, a_move, t1hero2, t1hero3, t1hero4, t2hero1, t2hero2, t2hero3, t2hero4)
-    t2hero1.set_health(d_hp)
-    time.sleep(3)
+    #a_move = "kinto_attack"
+    if team1_speed >= team2_speed:
 
+        d_hp = combat.standard_attack(t1hero1, t1hero2, t1hero3, t1hero4, t2hero1, team1_name)
+        t2hero1.set_health(d_hp)
+        time.sleep(3)
+        d_hp = combat.standard_attack(t2hero1, t2hero2, t2hero3, t2hero4, t1hero1, team2_name)
+        t1hero1.set_health(d_hp)
+        time.sleep(3)
+
+    else:
+        d_hp = combat.standard_attack(t2hero1, t2hero2, t2hero3, t2hero4, t1hero1, team2_name)
+        t1hero1.set_health(d_hp)
+        time.sleep(3)
+        d_hp = combat.standard_attack(t1hero1, t1hero2, t1hero3, t1hero4, t2hero1, team1_name)
+        t2hero1.set_health(d_hp)
+        time.sleep(3)
     #team_display()
-    combat_stats(t1hero1, t2hero1)
-    d_hp = combat.fight_hero(t2hero1, a_move, t2hero2, t2hero3, t2hero4, t1hero1, t1hero2, t1hero3, t1hero4)
-    time.sleep(3)
+
+
     print("Round 2")
+    combat.reset_round_var(t1hero1, t1hero2, t1hero3, t1hero4)
+    combat.reset_round_var(t2hero1, t2hero2, t2hero3, t2hero4)
     combat_stats(t1hero1, t2hero1)
+    if t1hero1.get_speed() >= t2hero1.get_speed():
+
+        d_hp = combat.kinto_attack(t1hero1, t1hero2, t1hero3, t1hero4, t2hero1, team1_name)
+        t2hero1.set_health(d_hp)
+        d_hp = combat.kinto_attack(t2hero1, t2hero2, t2hero3, t2hero4, t1hero1, team2_name)
+        t1hero1.set_health(d_hp)
+    else:
+        d_hp = combat.kinto_attack(t2hero1, t2hero2, t2hero3, t2hero4, t1hero1, team2_name)
+        t1hero1.set_health(d_hp)
+        d_hp = combat.kinto_attack(t1hero1, t1hero2, t1hero3, t1hero4, t2hero1, team1_name)
+        t2hero1.set_health(d_hp)
 
 def main():
     battle()

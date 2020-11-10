@@ -86,23 +86,24 @@ class Adan(Hero):
     self.move = {
           "kinto_attack": {
                           "name": "Mega Punch",
-                          "damage": 12,
+                          "damage": 24,
                           "cost": 2,
                           "cool-down": 1,
-                          "cause": "KD",
+                          "cause": "knockdown",
                           "type": "str"
                           },
         "chase_attack": {
                           "name": "Slash 1",
                           "damage": 5,
-                          "chase": "KD",
-                          "cause": "PA",
+                          "chase": "knockdown",
+                          "cause": "repulsed",
                           "type": "str",
                           "used": False
                           },
-        "support": {
+        "standard_attack": {
                     "name": "heal 1",
                     "power": 14,
+                    "cause": "normal",
                     "type": "int"
                     },
         "passive": {
@@ -120,7 +121,7 @@ class Franky(Hero):
     self.move = {
           "kinto_attack": {
                           "name": "Mega Kick",
-                          "damage": 12,
+                          "damage": 24,
                           "cost": 2,
                           "cool-down": 1,
                           "cause": "PA",
@@ -129,12 +130,12 @@ class Franky(Hero):
         "chase_attack": {
                           "name": "Scream 1",
                           "damage": 5,
-                          "chase": "CA",
-                          "cause": "KD",
+                          "chase": "confused",
+                          "cause": "knockdown",
                           "type": "int",
                           "used": False
                           },
-        "support": {
+        "standard_attack": {
                     "name": "chaos 1",
                     "power": 14,
                     "cause": "stunt",
@@ -155,7 +156,7 @@ class Alma(Hero):
     self.move = {
           "kinto_attack": {
                           "name": "Water Fall",
-                          "damage": 12,
+                          "damage": 24,
                           "cost": 2,
                           "cool-down": 1,
                           "cause": "poisoning"
@@ -163,11 +164,11 @@ class Alma(Hero):
         "chase_attack": {
                           "name": "Kick",
                           "damage": 5,
-                          "chase": "PA",
-                          "cause": "CA",
+                          "chase": "repulsed",
+                          "cause": "confused",
                           "used": False
                           },
-        "support": {
+        "standard_attack": {
                     "name": "Mist 1",
                     "power": 14,
                     "cause": "normal"
@@ -187,21 +188,21 @@ class Luis(Hero):
     self.move = {
           "kinto_attack": {
                           "name": "Earthquake",
-                          "damage": 15,
+                          "damage": 30,
                           "cost": 3,
                           "cool-down": 2,
-                          "cause": "KD"
+                          "cause": "knockdown"
                           },
         "chase_attack": {
                           "name": "Hyper punch 1",
                           "damage": 8,
-                          "chase": "KD",
-                          "cause": "KD",
+                          "chase": "knockdown",
+                          "cause": "knockdown",
                           "used": False
                           },
-        "support": {
+        "standard_attack": {
                     "name": "Mud armor",
-                    "defense shield": 10,
+                    "power": 10,
                     "cause": "Immunity"
                     },
         "passive": {
@@ -214,33 +215,33 @@ class Chino(Hero):
   def __init__(self):
     Hero.__init__(self)
     self.name = "Jaime Leyva"
-    self.element = "Wind"
+    self.element = "Lighting"
     self.move = {
           "kinto_attack": {
-                          "name": "Earthquake",
-                          "damage": 15,
+                          "name": "Kamui",
+                          "damage": 30,
                           "cost": 3,
                           "cool-down": 2,
-                          "cause": "KD",
-                          "type": "str"
+                          "cause": "knockdown",
+                          "type": "int"
                           },
         "chase_attack": {
-                          "name": "Hyper punch 1",
+                          "name": "One Thousand Years of Death",
                           "damage": 8,
-                          "chase": "KD",
-                          "cause": "KD",
+                          "chase": "Repulsed",
+                          "cause": "high float",
                           "type": "str",
                           "used": False
                           },
-        "support": {
-                    "name": "Mud armor",
-                    "power": 10,
-                    "cause": "Immunity",
-                    "type": "str"
+        "standard_attack": {
+                            "name": "Lighting Blade",
+                            "power": 5,
+                            "cause": "low float",
+                            "type": "str/int"
                     },
         "passive": {
-                    "name": "Earth Master",
-                    "action": 1.35,
+                    "name": "Ambition",
+                    "action": 1.05,
                     "type": "boost"
                     }
         }
@@ -249,30 +250,31 @@ class Gil(Hero):
   def __init__(self):
     Hero.__init__(self)
     self.name = "Gil Osuna"
-    self.element = "Water"
+    self.element = "Earth"
     self.move = {
           "kinto_attack": {
-                          "name": "Triple kick",
-                          "damage": 15,
+                          "name": "Konoha Hurricane",
+                          "damage": 44,
                           "cost": 3,
                           "cool-down": 2,
-                          "cause": "PA"
+                          "cause": "repulsed",
+                          "type": "str"
                           },
         "chase_attack": {
-                          "name": "Upper Kick 1",
-                          "damage": 8,
-                          "chase": "PA",
-                          "cause": "KD",
+                          "name": "Primary Lotus",
+                          "damage": 9,
+                          "chase": "high float",
+                          "cause": "knockdown",
                           "used": False
                           },
-        "support": {
-                    "name": "Ramen bowl",
-                    "recover mana": 2,
-                    "cause": "normal"
+        "standard_attack": {
+                            "name": "Taijutsu Attack",
+                            "power": 5,
+                            "cause": "high float"
                     },
         "passive": {
-                    "name": "Earth Master",
-                    "action": 1.35,
+                    "name": "Gate of Joy",
+                    "action": 0.25,
                     "type": "boost"
                     }
         }
@@ -280,31 +282,35 @@ class Gil(Hero):
 class Lalo(Hero):
   def __init__(self):
     Hero.__init__(self)
+    self.stats["speed"] = 10
     self.name = "Eduardo Castro"
     self.element = "Fire"
     self.move = {
-          "kinto_attack": {
-                          "name": "Red Roses",
-                          "damage": 18,
+        "kinto_attack": {
+                          "name": "Moonlight Slash",
+                          "damage": 36,
                           "cost": 2,
                           "cool-down": 2,
-                          "cause": "PA"
+                          "cause": "knockdown",
+                          "type": "str"
                           },
         "chase_attack": {
-                          "name": "Sweet Talk 1",
-                          "damage": 5,
-                          "chase": "PA",
-                          "cause": "confused",
+                          "name": "Amaterasu",
+                          "damage": 6,
+                          "chase": "high float",
+                          "cause": "burning",
+                          "type": "int",
                           "used": False
                           },
-        "support": {
-                    "name": "King Gambit",
-                    "recover mana": 2,
-                    "cause": "normal"
-                    },
+        "standard_attack": {
+                           "name": "Crow dance",
+                           "power": 5,
+                           "cause": "high float",
+                           "type": "str/int"
+                            },
         "passive": {
-                    "name": "Chess Master",
-                    "action": 1.15,
+                    "name": "Coordinated combat",
+                    "action": 1.30,
                     "type": "boost"
                     }
         }
@@ -318,7 +324,7 @@ class Sherman(Hero):
     self.move = {
           "kinto_attack": {
                           "name": "Hand Shake",
-                          "damage": 13,
+                          "damage": 26,
                           "cost": 1,
                           "cool-down": 1,
                           "cause": "burning"
@@ -330,9 +336,9 @@ class Sherman(Hero):
                           "cause": "KD",
                           "used": False
                           },
-        "support": {
+        "standard_attack": {
                     "name": "Mom's Food",
-                    "heal": 13,
+                    "power": 13,
                     "cause": "normal"
                     },
         "passive": {
