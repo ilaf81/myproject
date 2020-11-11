@@ -2,6 +2,9 @@
 
 # Hero class with all standard attributes
 
+def hero_data():
+
+
 class Hero():
   def __init__(self):
     self.stats = {"health points": 1200.0,
@@ -21,7 +24,11 @@ class Hero():
     self.move = {}
     self.attacked = False
     self.alive = True
+    self.id = 0
 
+  #function to get hero unique id
+  def get_id(self):
+      return self.id
 
   #function to get hero name
   def get_name(self):
@@ -86,6 +93,7 @@ class Adan(Hero):
     Hero.__init__(self)
     self.name = "Adan Cruz"
     self.element = "Fire"
+    self.id = 1
     self.move = {
           "kinto_attack": {
                           "name": "Mega Punch",
@@ -93,7 +101,8 @@ class Adan(Hero):
                           "cost": 2,
                           "cool-down": 1,
                           "cause": "knockdown",
-                          "type": "str"
+                          "type": "str",
+                          "heals": False
                           },
         "chase_attack": {
                           "name": "Slash",
@@ -101,12 +110,14 @@ class Adan(Hero):
                           "chase": "knockdown",
                           "cause": "repulsed",
                           "type": "str",
-                          "used": False
+                          "used": False,
+                          "heals": False
                           },
         "standard_attack": {
                     "name": "Heal",
                     "power": 14,
-                    "cause": "normal",
+                    "cause": "cured",
+                    "heals": True,
                     "type": "int"
                     },
         "passive": {
@@ -121,6 +132,7 @@ class Franky(Hero):
     Hero.__init__(self)
     self.name = "Franky Cruz"
     self.element = "Wind"
+    self.id = 2
     self.move = {
           "kinto_attack": {
                           "name": "Mega Kick",
@@ -128,6 +140,7 @@ class Franky(Hero):
                           "cost": 2,
                           "cool-down": 1,
                           "cause": "PA",
+                          "heals": False,
                           "type": "str"
                           },
         "chase_attack": {
@@ -135,6 +148,7 @@ class Franky(Hero):
                           "damage": 5,
                           "chase": "confused",
                           "cause": "knockdown",
+                          "heals": False,
                           "type": "int",
                           "used": False
                           },
@@ -142,6 +156,7 @@ class Franky(Hero):
                     "name": "Chaos",
                     "power": 14,
                     "cause": "stunt",
+                    "heals": False,
                     "type": "int"
                     },
         "passive": {
@@ -156,6 +171,7 @@ class Alma(Hero):
     Hero.__init__(self)
     self.name = "Alma Cruz"
     self.element = "Water"
+    self.id = 3
     self.move = {
           "kinto_attack": {
                           "name": "Water Fall",
@@ -171,12 +187,14 @@ class Alma(Hero):
                           "chase": "repulsed",
                           "cause": "confused",
                           "used": False,
+                          "heals": False,
                           "type": "int"
                           },
         "standard_attack": {
                     "name": "Mist",
                     "power": 14,
                     "cause": "normal",
+                    "heals": True,
                     "type": "int"
                     },
         "passive": {
@@ -191,6 +209,7 @@ class Luis(Hero):
     Hero.__init__(self)
     self.name = "Luis Cruz"
     self.element = "Earth"
+    self.id = 4
     self.move = {
           "kinto_attack": {
                           "name": "Earthquake",
@@ -198,6 +217,7 @@ class Luis(Hero):
                           "cost": 3,
                           "cool-down": 2,
                           "cause": "knockdown",
+                          "heals": False,
                           "type": "str"
                           },
         "chase_attack": {
@@ -206,12 +226,14 @@ class Luis(Hero):
                           "chase": "knockdown",
                           "cause": "knockdown",
                           "type": "str",
+                          "heals": False,
                           "used": False
                           },
         "standard_attack": {
                     "name": "Mud armor",
                     "power": 10,
                     "cause": "Immunity",
+                    "heals": True,
                     "type": "int"
                     },
         "passive": {
@@ -223,8 +245,9 @@ class Luis(Hero):
 class Chino(Hero):
   def __init__(self):
     Hero.__init__(self)
-    self.name = "Jaime Leyva"
+    self.name = "Kakashi" # Jaime Leyva
     self.element = "Lighting"
+    self.id = 5
     self.move = {
           "kinto_attack": {
                           "name": "Kamui",
@@ -232,6 +255,7 @@ class Chino(Hero):
                           "cost": 3,
                           "cool-down": 2,
                           "cause": "knockdown",
+                          "heals": False,
                           "type": "int"
                           },
         "chase_attack": {
@@ -240,12 +264,14 @@ class Chino(Hero):
                           "chase": "Repulsed",
                           "cause": "high float",
                           "type": "str",
-                          "used": False
+                          "used": False,
+                          "heals": False
                           },
         "standard_attack": {
                             "name": "Lighting Blade",
                             "power": 5,
                             "cause": "low float",
+                            "heals": False,
                             "type": "str/int"
                     },
         "passive": {
@@ -258,8 +284,9 @@ class Chino(Hero):
 class Gil(Hero):
   def __init__(self):
     Hero.__init__(self)
-    self.name = "Gil Osuna"
+    self.name = "Lee" # Gil Osuna
     self.element = "Earth"
+    self.id = 6
     self.move = {
           "kinto_attack": {
                           "name": "Konoha Hurricane",
@@ -267,6 +294,7 @@ class Gil(Hero):
                           "cost": 3,
                           "cool-down": 2,
                           "cause": "repulsed",
+                          "heals": False,
                           "type": "str"
                           },
         "chase_attack": {
@@ -274,12 +302,14 @@ class Gil(Hero):
                           "damage": 9,
                           "chase": "high float",
                           "cause": "knockdown",
+                          "heals": False,
                           "used": False
                           },
         "standard_attack": {
                             "name": "Taijutsu Attack",
                             "power": 5,
                             "cause": "high float",
+                            "heals": False,
                             "type": "str"
                     },
         "passive": {
@@ -293,8 +323,9 @@ class Lalo(Hero):
   def __init__(self):
     Hero.__init__(self)
     self.stats["speed"] = 10
-    self.name = "Eduardo Castro"
+    self.name = "Itachi" # Eduardo Castro
     self.element = "Fire"
+    self.id = 7
     self.move = {
         "kinto_attack": {
                           "name": "Moonlight Slash",
@@ -302,6 +333,7 @@ class Lalo(Hero):
                           "cost": 2,
                           "cool-down": 2,
                           "cause": "knockdown",
+                          "heals": False,
                           "type": "str"
                           },
         "chase_attack": {
@@ -310,12 +342,14 @@ class Lalo(Hero):
                           "chase": "high float",
                           "cause": "burning",
                           "type": "int",
+                          "heals": False,
                           "used": False
                           },
         "standard_attack": {
                            "name": "Crow dance",
                            "power": 5,
                            "cause": "high float",
+                           "heals": False,
                            "type": "str/int"
                             },
         "passive": {
@@ -329,8 +363,9 @@ class Lalo(Hero):
 class Sherman(Hero):
   def __init__(self):
     Hero.__init__(self)
-    self.name = "Carlos Duarte"
+    self.name = "Ino" # Carlos Duarte
     self.element = "Earth"
+    self.id = 8
     self.move = {
           "kinto_attack": {
                           "name": "Hand Shake",
@@ -338,6 +373,7 @@ class Sherman(Hero):
                           "cost": 1,
                           "cool-down": 1,
                           "cause": "burning",
+                          "heals": False,
                           "type": "str"
                           },
         "chase_attack": {
@@ -345,6 +381,7 @@ class Sherman(Hero):
                           "damage": 4,
                           "chase": "burning",
                           "cause": "knockdown",
+                          "heals": False,
                           "type": "int",
                           "used": False
                           },
@@ -352,6 +389,7 @@ class Sherman(Hero):
                     "name": "Mom's Food",
                     "power": 13,
                     "type": "int",
+                    "heals": True,
                     "cause": "normal"
                     },
         "passive": {
