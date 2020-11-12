@@ -94,12 +94,12 @@ def battle():
         t2hero1.set_health(d_hp)
     print("Would you like to use Kinto attacks")
 
-training_points_int = 5
-training_points_str = 10
-training_points_speed = 15
-player_stamina = 2800
+training_points_int = 0
+training_points_str = 0
+training_points_speed = 0
+player_stamina = 200
 player_gold = 0
-player_artifacts = 2
+player_artifacts = 1
 candy_hp = 0
 candy_def = 0
 candy_m_def = 0
