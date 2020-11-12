@@ -370,7 +370,7 @@ def kinto_attack(hero1, hero2, hero3, hero4, e_boss, team_name):
 
     return enemy_health
 
-def kinto_attack_slected(hero1, hero2, hero3, hero4, e_boss):
+def kinto_attack_selected(hero1, hero2, hero3, hero4, e_boss):
 
     enemy_main = e_boss
 

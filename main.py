@@ -99,17 +99,19 @@ training_points_str = 10
 training_points_speed = 15
 player_stamina = 2800
 player_gold = 0
-player_artifacts = 0
+player_artifacts = 2
 candy_hp = 0
 candy_def = 0
 candy_m_def = 0
 rare_candy = 0
 
+team1_name = ""
+
 pos1 = hero.P1()
 pos2 = hero.P2()
 pos3 = hero.P3()
 pos4 = hero.P4()
-
+team1_name = ""
 team.welcome_message()
 team.Game_Menu()
 
@@ -145,7 +147,8 @@ while option_menu != 0:
                     player_stamina -= 10
                     found_artifacts = random.randint(1, 100)
                 if tp_to_spend > 1:
-
+                    player_gold += 5
+                    print(f"You earned 5 gold and now have {player_gold} gold")
                     while True:
                         print(f"You have {tp_to_spend} quest points. What would you like to turn into (str/int/speed)")
                         answer_tp = input().lower().strip()
@@ -674,6 +677,10 @@ while option_menu != 0:
                         print(f"You have {training_points_str} strength training points")
                         print(f"You have {training_points_int} intellect training points")
                         print(f"You have {training_points_speed} speed training points")
+                        print(f"You have {candy_hp} HP Candy")
+                        print(f"You have {candy_def} Defense Candy")
+                        print(f"You have {candy_m_def} M Defense Candy\n")
+                        time.sleep(2)
 
                     else:
                         print("Invalid option")
@@ -690,22 +697,59 @@ while option_menu != 0:
         opt_menu_shop = int(input(" Enter your option >"))
         while opt_menu_shop != 0:
             if opt_menu_shop == 1:
-                print("Option 1 was selected")
+                if player_gold >= 100:
+                    candy_def += 1
+                    print(f"You bough 1 Defense Candy and now have {candy_def} Defense Candy")
+
+                else:
+                    print("You don't have enough gold")
             elif opt_menu_shop == 2:
-                print("Option 2 was selected")
+                if player_gold >= 100:
+                    candy_m_def += 1
+                    print(f"You bough 1 Defense Candy and now have {candy_m_def} Defense Candy")
+
+                else:
+                    print("You don't have enough gold")
+
             elif opt_menu_shop == 3:
-                print("Option 3 was selected")
+                if player_gold >= 100:
+                    candy_hp += 1
+                    print(f"You bough 1 Defense Candy and now have {candy_hp} Defense Candy")
+
+                else:
+                    print("You don't have enough gold")
             elif opt_menu_shop == 4:
-                print("Option 4 was selected")
+                print("Coming soon")
             elif opt_menu_shop == 5:
-                print("Option 5 was selected")
+                if player_artifacts >= 1:
+                    player_artifacts -= 1
+                    player_gold += 5000
+                    print(f"You sold 1 Artifact Candy and now have {player_gold} Gold")
+
+                else:
+                    print("You don't have artifacts")
 
             else:
                 print("Invalid option")
             team.shop_menu()
             opt_menu_shop = int(input(" Enter your option >"))
     elif option_menu == 3:
+
         print("Option 3 was selected")
+        if team1_name == "":
+            team1_name = input("Please enter your team's name\n")
+        else:
+            print(f" Welcome back {team1_name}")
+
+
+        team1_hero_list = [t1hero1, t1hero2, t1hero3, t1hero4]
+        team1_speed = t1hero1.get_speed() + t1hero2.get_speed() + t1hero3.get_speed() + t1hero4.get_speed()
+
+        print(f"team 1 speed is {team1_speed}")
+        team1 = {"heroP1": team1_hero_list[0].name, "heroP2": team1_hero_list[1].name, "heroP3": team1_hero_list[2].name,
+                 "heroP4": team1_hero_list[3].name}
+        team.team_display_menu(team1_name,team1)
+
     elif option_menu == 4:
         team.team_build_menu()
         opt_tb_menu = int(input(" Enter your option >"))
@@ -775,13 +819,92 @@ while option_menu != 0:
             opt_tb_menu = int(input(" Enter your option"))
 
     elif option_menu == 5:
-        print("Option 5 was selected")
-        break
+        temp_t1hero1_HP = t1hero1.get_health()
+        temp_t1hero2_HP = t1hero2.get_health()
+        temp_t1hero3_HP = t1hero3.get_health()
+        temp_t1hero4_HP = t1hero4.get_health()
+
+        team1_hero_list = [t1hero1, t1hero2, t1hero3, t1hero4]
+        team1_speed = t1hero1.get_speed() + t1hero2.get_speed() + t1hero3.get_speed() + t1hero4.get_speed()
+
+
+        # defining Enemy Team
+        level_e_list = level_1_fire()
+        t2hero1 = level_e_list[0]
+        t2hero2 = level_e_list[1]
+        t2hero3 = level_e_list[2]
+        t2hero4 = level_e_list[3]
+
+        team2_name = "Fire Team 1"
+        # team2_hero_list = [t2hero1, t2hero2, t2hero3, t2hero4]
+        team2_speed = t2hero1.get_speed() + t2hero2.get_speed() + t2hero3.get_speed() + t2hero4.get_speed()
+        print(f"team 2 speed is {team2_speed}")
+
+        team2 = {"heroM": t2hero1.get_name(), "heroS1": t2hero3.get_name(), "heroS2": t2hero4.get_name(),
+                 "heroS3": t2hero2.get_name()}
+        round = 1
+        print(f"Round {round}")
+        combat.battle_menu()
+        opt_menu_combat = int(input(" Enter your option >"))
+        while opt_menu_combat != 0:
+            if opt_menu_combat == 1:
+                print("Coming soon")
+            elif opt_menu_combat == 2:
+                team.team_display(team1_name, team1, team2_name, team2)
+            elif opt_menu_combat == 3:
+
+                print(f"{t1hero1.get_name()} and {t2hero1.get_name()} step in for battle")
+                time.sleep(2)
+                combat_stats(t1hero1, t2hero1)
+                # a_move = "kinto_attack"
+
+            elif opt_menu_combat == 4:
+
+                print(f"{t1hero1.get_name()} and {t2hero1.get_name()} step in for battle")
+                time.sleep(2)
+                combat_stats(t1hero1, t2hero1)
+
+                if team1_speed >= team2_speed:
+
+                    d_hp = combat.standard_attack(t1hero1, t1hero2, t1hero3, t1hero4, t2hero1, team1_name)
+                    t2hero1.set_health(d_hp)
+                    time.sleep(3)
+                    d_hp = combat.standard_attack(t2hero1, t2hero2, t2hero3, t2hero4, t1hero1, team2_name)
+                    t1hero1.set_health(d_hp)
+                    time.sleep(3)
+
+                else:
+                    d_hp = combat.standard_attack(t2hero1, t2hero2, t2hero3, t2hero4, t1hero1, team2_name)
+                    t1hero1.set_health(d_hp)
+                    time.sleep(3)
+                    d_hp = combat.standard_attack(t1hero1, t1hero2, t1hero3, t1hero4, t2hero1, team1_name)
+                    t2hero1.set_health(d_hp)
+                    time.sleep(3)
+
+            elif opt_menu_combat == 5:
+                round +=1
+                print(f"Round {round}")
+                combat.reset_round_var(t1hero1, t1hero2, t1hero3, t1hero4)
+                combat.reset_round_var(t2hero1, t2hero2, t2hero3, t2hero4)
+            else:
+                print("Invalid option")
+            print()
+            combat.battle_menu()
+            opt_menu_combat = int(input(" Enter your option >"))
+
+        t1hero1.set_health(temp_t1hero1_HP)
+        t1hero2.set_health(temp_t1hero2_HP)
+        t1hero3.set_health(temp_t1hero3_HP)
+        t1hero4.set_health(temp_t1hero4_HP)
+
+
     else:
         print("Invalid option")
     print()
     team.Game_Menu()
     option_menu = int(input(" Enter your option"))
+
+exit()
 #print("Thank you for playing Anime Arena")
 #exit()
 
@@ -806,17 +929,14 @@ t2hero2 = level_e_list[1]
 t2hero3 = level_e_list[2]
 t2hero4 = level_e_list[3]
 
-team2_hero_list = [t2hero1, t2hero2, t2hero3, t2hero4]
+team2_name = "Fire Team 1"
+#team2_hero_list = [t2hero1, t2hero2, t2hero3, t2hero4]
 team2_speed = t2hero1.get_speed() + t2hero2.get_speed() + t2hero3.get_speed() + t2hero4.get_speed()
 print(f"team 2 speed is {team2_speed}")
-
-team2_speed = t2hero1.get_speed() + t2hero2.get_speed() + t2hero3.get_speed() + t2hero4.get_speed()
 
 team2 = {"heroM": t2hero1.get_name(), "heroS1": t2hero3.get_name(), "heroS2": t2hero4.get_name(),
          "heroS3": t2hero2.get_name()}
 
-team1_name = "ScRuS"
-team2_name = "Fire Team 1"
 
 
 #function to display team information, hero position, and battling hero

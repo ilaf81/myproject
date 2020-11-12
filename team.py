@@ -165,6 +165,18 @@ def team_display(team1_name,team1, team2_name, team2):
     ####################                                 ####################
     P1 {team1["heroM"].ljust(20)}                               P1 {team2["heroM"].ljust(20)} 
     """)
+def team_display_menu(team1_name,team1):
+
+    print(f"""
+
+    {team1_name.center(25,"-")}                            
+    P4. {team1["heroP4"].ljust(20)}                              
+    P3. {team1["heroP3"].ljust(20)}                            
+    P2. {str(team1["heroP2"]).ljust(20)}                              
+    ####################                                 
+    P1 {team1["heroP1"].ljust(20)}                                
+    """)
+    time.sleep(2)
 
 # function to get hero id
 def get_hero(id):
@@ -211,7 +223,7 @@ def Game_Menu():
     print("[2] Go to Shop")
     print("[3] Show Team")
     print("[4] Build Team")
-    print("[5] Go to Dungeon")
+    print("[5] Go to Arena")
     print("[0] Exit the Game\n")
 
 
