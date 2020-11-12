@@ -1,9 +1,143 @@
+import os
 # This page will have all the heroes dictionaries
 
 # Hero class with all standard attributes
 
-def hero_data():
+def position_data(position):
+    pos = position
+    print("---------- Position Information ---------- ")
+    print(f"""
+   ---------Base stats----------
+   {pos.get_name().ljust(15)}                                                 
+   HP: {str(pos.get_health()).ljust(15)}                                                 
+   DEF: {str(pos.get_defense()).ljust(15)}
+   MDF: {str(pos.get_m_defense()).ljust(15)}
+   STR: {str(pos.get_strength()).ljust(15)}
+   INT: {pos.get_intellect()} 
+   SPD: {pos.get_speed()} 
+    """)
 
+def hero_data( hero):
+
+    adan = hero
+
+    print("---------- Hero Information ---------- ")
+    print(f"""
+    ---------Base stats----------
+    {adan.get_name().ljust(15)}                    INT: {adan.get_intellect()}                              
+    HP: {str(adan.get_health()).ljust(15)}                SPD: {adan.get_speed()}                                  
+    DEF: {str(adan.get_defense()).ljust(15)}               ELM: {adan.get_element().ljust(15)}                          
+    STR: {str(adan.get_strength()).ljust(15)}               HID: {adan.get_id()}                           
+    ----------Moves----------
+    KTN: {adan.move["kinto_attack"]["name"].ljust(15)}          CHA: {adan.move["chase_attack"]["name"].ljust(15)}      
+         DMG: {str(adan.move["kinto_attack"]["damage"]).ljust(15)}          DMG: {adan.move["chase_attack"]["damage"]}                         
+         CST: {str(adan.move["kinto_attack"]["cost"]).ljust(15)}          CHA: {adan.move["chase_attack"]["chase"]}                        
+         DTP: {str(adan.move["kinto_attack"]["type"]).ljust(15)}          CAU: {adan.move["chase_attack"]["cause"]} 
+                                            DTP: {adan.move["chase_attack"]["type"]}
+   
+    STD: {adan.move["standard_attack"]["name"].ljust(15)}           PAS: {adan.move["passive"]["name"].ljust(15)} 
+         DMG: {str(adan.move["standard_attack"]["power"]).ljust(15)}           DES: {adan.move["passive"]["desc"]}                                           
+         CAU: {adan.move["standard_attack"]["cause"]}
+         DTP: {adan.move["standard_attack"]["type"]}
+                                        
+         
+            """)
+
+#creating a class for the position on battle field
+
+class Position():
+    def __init__(self):
+        self.name = "P"
+        self.health = 0
+        self.intellect = 0
+        self.strength = 0
+        self.defense = 0
+        self.m_defense = 0
+        self.speed = 0
+    # function to get name
+    def get_name(self):
+        return self.name
+
+    # function to get speed
+    def get_speed(self):
+        return self.speed
+
+    # function to get speed
+    def set_speed(self, spd_var):
+        self.speed = spd_var
+
+    # function to get health
+    def get_health(self):
+        return self.health
+
+    # function to set health
+    def set_health(self, new_hp):
+        self.health = new_hp
+
+    # function to get defense
+
+    def get_defense(self):
+        return self.defense
+    # function to update defense
+    def set_defense(self, new_def):
+        self.defense = new_def
+
+    # function to get magic defense
+
+    def get_m_defense(self):
+        return self.m_defense
+
+    # function to update magic defense
+
+    def set_m_defense(self, new_m_def):
+        self.m_defense = new_m_def
+
+    # function to get intellect
+
+    def get_intellect(self):
+        return self.intellect
+
+    # function to update intellect
+
+    def set_intellect(self, new_int):
+        self.intellect = new_int
+
+    # function to get strength
+
+    def get_strength(self):
+        return self.strength
+
+    # function to update strength
+
+    def set_strength(self, new_str):
+        self.strength = new_str
+
+class P1(Position):
+    def __init__(self):
+        Position.__init__(self)
+        self.name = "Position 1"
+        self.health = 200
+        self.defense = 100
+        self.m_defense = 100
+class P2(Position):
+    def __init__(self):
+        Position.__init__(self)
+        self.strength = 150
+        self.name = "Position 2"
+
+class P3(Position):
+    def __init__(self):
+        Position.__init__(self)
+        self.speed = 100
+        self.strength = 50
+        self.intellect = 50
+        self.name = "Position 3"
+
+class P4(Position):
+    def __init__(self):
+        Position.__init__(self)
+        self.intellect = 150
+        self.name = "Position 4"
 
 class Hero():
   def __init__(self):
@@ -14,7 +148,7 @@ class Hero():
                   "intellect": 10,
                   "speed": 5}
       
-    self.battle_field = {"position": {"main": False, "support1": False, "support2": False, "support3": False}}
+    self.battle_field = ""
     self.element = ""
     self.state = {"normal": True, "poisoning": False, "stunt": False, "burning": False, "confused": False},
     self.level = 1
@@ -26,6 +160,13 @@ class Hero():
     self.alive = True
     self.id = 0
 
+  #function to get position
+  def get_bf_position(self):
+      return self.battle_field
+
+  #function to get position
+  def set_bf_position(self, position):
+      self.battle_field = position
   #function to get hero unique id
   def get_id(self):
       return self.id
@@ -122,8 +263,9 @@ class Adan(Hero):
                     },
         "passive": {
                     "name": "40/40",
-                    "action": 35,
-                    "type": "boost"
+                    "action": 1.35,
+                    "type": "strength",
+                    "desc": "Increase strength 35%"
                     }
         }
 
@@ -160,9 +302,10 @@ class Franky(Hero):
                     "type": "int"
                     },
         "passive": {
-                    "name": "sprinting",
-                    "action": 35,
-                    "type": "boost"
+                    "name": "Sprinting",
+                    "action": 1.35,
+                    "type": "speed",
+                    "desc": "Increase speed 35%"
                     }
         }
 
@@ -199,8 +342,9 @@ class Alma(Hero):
                     },
         "passive": {
                     "name": "Medical knowledge",
-                    "action": 1.2,
-                    "type": "boost"
+                    "action": 1.35,
+                    "type": "intellect",
+                    "desc": "Increase intellect 35%"
                     }
         }
 
@@ -239,7 +383,8 @@ class Luis(Hero):
         "passive": {
                     "name": "Earth master",
                     "action": 1.35,
-                    "type": "boost"
+                    "type": "strength",
+                    "desc": "Increase strength 35%"
                     }
         }
 class Chino(Hero):
@@ -276,8 +421,9 @@ class Chino(Hero):
                     },
         "passive": {
                     "name": "Ambition",
-                    "action": 1.05,
-                    "type": "boost"
+                    "action": 1.25,
+                    "type": "m_defense",
+                    "desc": "Increase magic defense 25%"
                     }
         }
 
@@ -303,6 +449,7 @@ class Gil(Hero):
                           "chase": "high float",
                           "cause": "knockdown",
                           "heals": False,
+                          "type": "str",
                           "used": False
                           },
         "standard_attack": {
@@ -314,8 +461,9 @@ class Gil(Hero):
                     },
         "passive": {
                     "name": "Gate of Joy",
-                    "action": 0.25,
-                    "type": "boost"
+                    "action": 1.25,
+                    "type": "defense",
+                    "desc": "Increase defense 25%"
                     }
         }
 
@@ -354,8 +502,9 @@ class Lalo(Hero):
                             },
         "passive": {
                     "name": "Coordinated combat",
-                    "action": 1.30,
-                    "type": "boost"
+                    "action": 1.35,
+                    "type": "strength",
+                    "desc": "Increase strength 35%"
                     }
         }
 
@@ -394,8 +543,9 @@ class Sherman(Hero):
                     },
         "passive": {
                     "name": "Physics PhD",
-                    "action": 1.05 ,
-                    "type": "boost"
+                    "action": 1.35,
+                    "type": "boost",
+                    "desc": "Increase intellect 35%"
                     }
         }
 

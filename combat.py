@@ -3,6 +3,16 @@ import random
 import time
 
 
+# creating battle menu
+def battle_menu():
+    print(" --Battle Menu--")
+    print("[1] Inventory")
+    print("[2] Show Teams")
+    print("[3] Use Kinto Attack")
+    print("[4] Use Standard Attack")
+    print("[5] End round")
+    print("[0] Retreat\n")
+
 # healing function
 
 def healling(int, power):
