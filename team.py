@@ -51,10 +51,10 @@ def strength_training(str_point):
         print(x)
         print("Down")
         print("UP")
-        time.sleep(1.5)
+        time.sleep(0.5)
     str_point += 1
     print(f"You have earn 1 str training point and now have {str_point} strength points ")
-    time.sleep(2)
+    time.sleep(0.5)
     return str_point
 
 def speed_training(spd_point):
@@ -66,11 +66,11 @@ def speed_training(spd_point):
 
         print("Mile")
         print(miles_list[mile])
-        time.sleep(1.5)
+        time.sleep(0.5)
         mile += 1
     spd_point += 1
     print(f"You have earn 1 str training point and now have {spd_point} strength points\n")
-    time.sleep(2)
+    time.sleep(0.5)
     return spd_point
 
 def intellect_training(int_point):
@@ -80,11 +80,11 @@ def intellect_training(int_point):
         guess_list = ["Add 8", "Multiply by 6", "Add 6", "Take away 3", "Add 12", "Take away 15", "Divide by 6", "Take away the number you choose", "The number you thinking is 8"]
 
         print(guess_list[response])
-        time.sleep(1.5)
+        time.sleep(0.5)
         response += 1
     int_point += 1
     print(f"You have earn 1 int training point and now have {int_point} intellect points\n")
-    time.sleep(2)
+    time.sleep(0.5)
     return int_point
 
 def quest_training(stamina_points):
@@ -204,6 +204,8 @@ def get_hero(id):
     elif id == 8:
         hero_obj = hero.Sherman()
         return hero_obj
+    else:
+        return None
 
 
 def heroes_id_converter(h_name):
@@ -212,6 +214,7 @@ def heroes_id_converter(h_name):
 
         if h_name == hero:
             return heroes_list_id[hero]
+    return None
 
 def set_hero(hero, position, h_list):
     hero_list = h_list

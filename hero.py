@@ -33,7 +33,7 @@ def hero_data( hero):
          DMG: {str(adan.move["kinto_attack"]["damage"]).ljust(15)}          DMG: {adan.move["chase_attack"]["damage"]}                         
          CST: {str(adan.move["kinto_attack"]["cost"]).ljust(15)}          CHA: {adan.move["chase_attack"]["chase"]}                        
          DTP: {str(adan.move["kinto_attack"]["type"]).ljust(15)}          CAU: {adan.move["chase_attack"]["cause"]} 
-                                            DTP: {adan.move["chase_attack"]["type"]}
+         DTP: {str(adan.move["kinto_attack"]["cause"]).ljust(15)}          DTP: {adan.move["chase_attack"]["type"]}
    
     STD: {adan.move["standard_attack"]["name"].ljust(15)}           PAS: {adan.move["passive"]["name"].ljust(15)} 
          DMG: {str(adan.move["standard_attack"]["power"]).ljust(15)}           DES: {adan.move["passive"]["desc"]}                                           

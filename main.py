@@ -107,21 +107,59 @@ rare_candy = 0
 
 team1_name = ""
 
+# Create empty hero list variable to be use later for team display function
+team1_hero_list = []
+
+# assigning hero team holding position to none to avoid nameError
+t1hero1 = None
+t1hero2 = None
+t1hero3 = None
+t1hero4 = None
+
+
 pos1 = hero.P1()
 pos2 = hero.P2()
 pos3 = hero.P3()
 pos4 = hero.P4()
 team1_name = ""
 team.welcome_message()
-team.Game_Menu()
 
 
-option_menu = int(input(" Enter your option >"))
+while True:
+    team.Game_Menu()
+    option_menu = input(" Enter your option >")
+    try:
+        option_menu = int(option_menu)
+
+    except ValueError:
+        print("Invalid input, please enter a valid number:")
+        time.sleep(1.5)
+        continue
+    if option_menu >= 0 and option_menu <= 5:
+        break
+    else:
+        print(("Please enter a valid range 0-5"))
+        time.sleep(1.5)
 
 while option_menu != 0:
     if option_menu == 1:
-        team.training_menu()
-        opt_menu_training = int(input(" Enter your option >"))
+        #creating a while loop to check for valid input on integers
+        while True:
+
+            team.training_menu()
+            opt_menu_training = input(" Enter your option >")
+            try:
+                opt_menu_training = int(opt_menu_training)
+            except ValueError:
+                print("Invalid input, please enter a valid number:")
+                time.sleep(1.5)
+                continue
+            if opt_menu_training >= 0 and opt_menu_training <= 5:
+                break
+            else:
+                print(("Please enter a valid range 0-5"))
+                time.sleep(1.5)
+        #########################################################
         while opt_menu_training != 0:
             if opt_menu_training == 1:
                 print(f"You have {training_points_str} strength points")
@@ -173,8 +211,25 @@ while option_menu != 0:
                 print("Questing completed. Comeback again")
 
             elif opt_menu_training == 5:
-                team.spend_TP_menu()
-                opt_menu_spend_training = int(input(" Enter your option >"))
+
+                while True:
+
+                    team.spend_TP_menu()
+                    opt_menu_spend_training = input(" Enter your option >")
+
+                    try:
+                        opt_menu_spend_training = int(opt_menu_spend_training)
+                    except ValueError:
+                        print("Invalid input, please enter a valid number:")
+                        time.sleep(1.5)
+                        continue
+                    if opt_menu_spend_training >= 0 and opt_menu_spend_training <= 5:
+                        break
+                    else:
+                        print(("Please enter a valid range 0-5"))
+                        time.sleep(1.5)
+                #########################################################
+
                 while opt_menu_spend_training != 0:
                     if opt_menu_spend_training == 1:
                         team.spend_P1()
@@ -734,21 +789,24 @@ while option_menu != 0:
             team.shop_menu()
             opt_menu_shop = int(input(" Enter your option >"))
     elif option_menu == 3:
+        if isinstance(t1hero1, hero.Hero) and isinstance(t1hero2, hero.Hero) and isinstance(t1hero3, hero.Hero) and isinstance(t1hero4, hero.Hero):
 
-        print("Option 3 was selected")
-        if team1_name == "":
-            team1_name = input("Please enter your team's name\n")
-        else:
-            print(f" Welcome back {team1_name}")
+            print("Option 3 was selected")
+            if team1_name == "":
+                team1_name = input("Please enter your team's name\n")
+            else:
+                print(f" Welcome back {team1_name}")
 
 
-        team1_hero_list = [t1hero1, t1hero2, t1hero3, t1hero4]
-        team1_speed = t1hero1.get_speed() + t1hero2.get_speed() + t1hero3.get_speed() + t1hero4.get_speed()
+            team1_hero_list = [t1hero1, t1hero2, t1hero3, t1hero4]
+            team1_speed = t1hero1.get_speed() + t1hero2.get_speed() + t1hero3.get_speed() + t1hero4.get_speed()
 
-        print(f"team 1 speed is {team1_speed}")
-        team1 = {"heroP1": team1_hero_list[0].name, "heroP2": team1_hero_list[1].name, "heroP3": team1_hero_list[2].name,
+            print(f"team 1 speed is {team1_speed}")
+            team1 = {"heroP1": team1_hero_list[0].name, "heroP2": team1_hero_list[1].name, "heroP3": team1_hero_list[2].name,
                  "heroP4": team1_hero_list[3].name}
-        team.team_display_menu(team1_name,team1)
+            team.team_display_menu(team1_name,team1)
+        else:
+            print("Please go build your team with 4 heroes")
 
     elif option_menu == 4:
         team.team_build_menu()
@@ -760,9 +818,16 @@ while option_menu != 0:
                 hero_name = input().strip().lower()
                 hero_id = team.heroes_id_converter(hero_name)
                 t1hero1 = team.get_hero(hero_id)
-                t1hero1.set_bf_position("P1")
-                print(t1hero1.get_bf_position())
-                print(f"You assigned {t1hero1.get_name()} to position 1")
+                while True:
+                    try:
+                        t1hero1.set_bf_position("P1")
+                        print(t1hero1.get_bf_position())
+                        print(f"You assigned {t1hero1.get_name()} to position 1")
+                        break
+                    except AttributeError:
+                        print("Please enter a valid heroes name")
+
+                        break
 
             elif opt_tb_menu == 2:
                 print("Please enter your hero name for position 2")
@@ -796,22 +861,37 @@ while option_menu != 0:
                 opt_menu_h_inf = int(input(" Enter your option >"))
                 while opt_menu_h_inf != 0:
                     if opt_menu_h_inf == 1:
-                        #os.system('clear')
+                        #os.system('cls')
+                        #while True:
+
                         print("\nThese are the current heroes available")
                         info_hero_dict = {"adan": hero.Adan(), "alma": hero.Alma(), "franky": hero.Franky(), "luis": hero.Luis(), "kakashi": hero.Chino(), "lee": hero.Gil(), "itachi": hero.Lalo(), "ino": hero.Sherman()}
                         hero_list_info = ["Adan", "Alma", "Franky", "Luis", "Kakashi", "Lee", "Itachi", "Ino"]
-                        print(hero_list_info)
 
-                        print("\nPlease enter your hero name to show information\n")
-                        hero_name = input().strip().lower()
-                        test_hero = info_hero_dict[hero_name]
-                        hero.hero_data(test_hero)
+                        while True:
+                            print(hero_list_info)
+                            print("\nPlease enter your hero name to show information\n")
+                            hero_name = input().strip().lower()
+                            try:
+                                test_hero = info_hero_dict[hero_name]
+                                hero.hero_data(test_hero)
+                            except KeyError:
+                                print("Please enter a valid hero name")
+                                print(hero_name)
+
+                            if hero_name == "0":
+                                team.hero_information_menu()
+                                opt_menu_h_inf = int(input(" Enter your option >"))
+                                break
+                            else:
+                                "Please enter a valid name or 0 to go back"
                     else:
                         print("Invalid option")
-                    print()
-                    team.hero_information_menu()
-                    opt_menu_h_inf = int(input(" Enter your option >"))
-                time.sleep(2)
+                        print()
+                        team.hero_information_menu()
+                        opt_menu_h_inf = int(input(" Enter your option >"))
+                    time.sleep(2)
+
             else:
                 print("Invalid option")
             print()
